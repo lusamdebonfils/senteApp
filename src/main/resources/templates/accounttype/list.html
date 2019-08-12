@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/masterlayout.html}">
+<head>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div >
+        <h1>List of Products</h1>
+
+        <table class="table table-striped" style="width: auto">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Number</th>
+                <th scope="col">Name</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Quantity in Stock</th>
+                <th scope="col">Date Supplied</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="accountType, iterStat : ${accounttypes}">
+                <th scope="row" th:text="${iterStat.count}"></th>
+<!--                <td th:text="${product.productNumber}"></td>-->
+<!--                <td th:text="${product.name}"></td>-->
+<!--                <td th:text="${product.unitPrice}"></td>-->
+<!--                <td th:text="${product.quantityInStock}"></td>-->
+<!--                <td th:text="${product.dateSupplied}"></td>-->
+
+            </tr>
+            </tbody>
+        </table>
+
+        <div>
+<!--            <ul class="pagination">-->
+<!--                <li class="page-item disabled">-->
+<!--                    <a class="page-link" href="#">Pages: </a>-->
+<!--                </li>-->
+<!--                <li th:each="i : ${#numbers.sequence(1, products.totalPages)}"-->
+<!--                    th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'">-->
+<!--                    <a th:href="@{/srm/product/list(pageno=${i-1})}"-->
+<!--                       th:text="${i}" class = "page-link"></a>-->
+<!--                </li>-->
+<!--            </ul>-->
+        </div>
+    </div>
+</th:block>
+</body>
+</html>

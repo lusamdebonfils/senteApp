@@ -1,28 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.tymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/masterlayout.html}">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Wakanda Application</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-1OYccka9EByiS23wvPFiYHBPRAgU91xYVFb8g8sen6vRiBI5Uko6+B87q8zPGUnA" crossorigin="anonymous">
+
 </head>
 <body>
+<th:block layout:fragment="content">
+    <div >
+        <h4>Welcome Golden Dome Market</h4>
 
-<div style="padding:1em;">
-    <div th:replace="fragments/navs ::topnav">
-    </div>
-    <div class="row mt-5">
-        <div class="col-3 bg-light shadow p-3 mb-5 mr-3 ml-5">
-            <div th:replace="fragments/navs ::sidenav">
-            </div>
+        <p>
+            Golden Dome Market (GDM) a Supplier Relationship Management (SRM)
+        </p>
 
-        </div>
-        <div class="col-8 bg-white">
-            <h1>HomePage</h1>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci aliquid aut, beatae consequatur, deleniti distinctio ea eius eligendi enim excepturi fugit harum hic id illo in incidunt inventore iste laboriosam magnam minima obcaecati officiis placeat quisquam quod ratione repellat repudiandae temporibus veniam voluptas. Ab, alias assumenda at culpa cum deserunt dolor doloribus et explicabo incidunt iure iusto libero nam natus nesciunt nobis nostrum porro provident quia reprehenderit, similique, totam ullam ut voluptatem voluptatum. Dolor et fugit in quasi sunt!
-        </div>
 
     </div>
-</div>
-
+</th:block>
 </body>
 </html>
