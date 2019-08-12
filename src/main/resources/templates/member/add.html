@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.tymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Sente Application</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-1OYccka9EByiS23wvPFiYHBPRAgU91xYVFb8g8sen6vRiBI5Uko6+B87q8zPGUnA" crossorigin="anonymous">
+</head>
+<body>
+
+<div style="padding:1em;">
+    <div th:replace="fragments/navs ::topnav">
+    </div>
+    <div class="row mt-5">
+        <div class="col-3 bg-light shadow p-3 mb-5 mr-3 ml-5">
+            <div th:replace="fragments/navs ::sidenav">
+            </div>
+
+        </div>
+        <div class="col-8 bg-white">
+            <h1>Add New Member</h1>
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
