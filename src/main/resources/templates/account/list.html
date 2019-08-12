@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.tymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Wakanda Application</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css" rel="stylesheet" integrity="sha384-N8DsABZCqc1XWbg/bAlIDk7AS/yNzT5fcKzg/TwfmTuUqZhGquVmpb5VvfmLcMzp" crossorigin="anonymous"/>
+    <!--    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-1OYccka9EByiS23wvPFiYHBPRAgU91xYVFb8g8sen6vRiBI5Uko6+B87q8zPGUnA" crossorigin="anonymous">-->
+</head>
+<body>
+
+<div style="padding:1em;" class="container">
+    <div th:replace="fragments/navs ::topnav">
+    </div>
+    <div class="row mt-5">
+        <div class="col-3 bg-light shadow p-3 mb-5 mr-3 ml-5">
+            <div th:replace="fragments/navs ::sidenav">
+            </div>
+        </div>
+        <div class="col-8 bg-white">
+            <div class="container mt-3 mb-3">
+                <h2 class="mb-4">Registered Citizens in the database
+                    <a href="/wakanda/new" class="btn btn-outline-danger btn-lg float-right">Register Citizen</a>
+                </h2>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ssn</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">M</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Date Of Birth</th>
+                        <th scope="col">Yearly Income</th>
+                        <th scope="col">State</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr class="datarow" th:each="citizen,iterStat : ${citizens}" th:onclick="@{document.location='#'}">
+                        <th scope="row" th:text="${iterStat.count}+'.'"></th>
+                        <td th:text="${citizen.ssn}"></td>
+                        <td th:text="${citizen.firstName}"></td>
+                        <td th:text="${citizen.middleName}"></td>
+                        <td th:text="${citizen.lastName}"></td>
+                        <td th:text="${#temporals.format(citizen.dateOfBirth, 'MMM dd, yyyy')}"></td>
+                        <td th:text="${citizen.yearlyIncome}"></td>
+                        <td th:text="${citizen.state.stateName}"></td>
+                    </tr>
+                    <tr style="background-color: #dedede;">
+                        <td th:colspan="5" style="padding-top:2em;padding-bottom:1em;text-decoration:none;font-weight: bold;font-size: xx-large;" th:text="'Yearly Income: '+${#numbers.formatCurrency(yearlySalary)}"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-center">
+                    <ul class="pagination pagination-sm">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">Pages: </a>
+                        </li>
+                        <li th:each="i : ${#numbers.sequence(1, citizens.totalPages)}"
+                            th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'">
+                            <a th:href="@{/wakanda/citizens/list(pageno=${i-1})}"
+                               th:text="${i}" class = "page-link"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
