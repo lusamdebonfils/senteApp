@@ -31,4 +31,9 @@ public class MemberServiceImplementation implements MemberService {
     public Member getMemberById(Long memberId) {
         return memberRepository.findById(memberId).orElse(null);
     }
+
+    @Override
+    public Double calculateMemberAccountBalance(Long memberId) {
+        return null;
+    }
 }

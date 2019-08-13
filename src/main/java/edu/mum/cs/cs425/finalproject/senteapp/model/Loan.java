@@ -1,6 +1,10 @@
 package edu.mum.cs.cs425.finalproject.senteapp.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,21 +17,39 @@ public class Loan {
     private Long loanNumber;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Installment> installmentList;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate applicationDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfIssue;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dueDate;
+    @Digits(integer = 9, fraction = 2, message = "* Balance must be a numeric/monetary amount in decimal (money) format such as 'x,xxx.xx'")
+    @NumberFormat(pattern = "#,###.##")
     private Double loanAmount;
     private Double interestRate;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "firstSeconder")
+    private Member firstSeconder;
+   // @OneToOne(cascade = CascadeType.ALL)
+  // @JoinColumn(name = "firstSeconder")
+  //  private Member firstSeconder;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "secondSeconder")
+    private Member secondSeconder;
 
     public Loan() {
     }
 
-    public Loan(Long loanNumber, List<Installment> installmentList, LocalDate dateOfIssue, LocalDate dueDate, Double loanAmount, Double interestRate) {
+    public Loan(Long loanNumber, List<Installment> installmentList, LocalDate applicationDate, LocalDate dateOfIssue, LocalDate dueDate, @Digits(integer = 9, fraction = 2, message = "* Balance must be a numeric/monetary amount in decimal (money) format such as 'x,xxx.xx'") Double loanAmount, Double interestRate, Member firstSeconder, Member secondSeconder) {
         this.loanNumber = loanNumber;
         this.installmentList = installmentList;
+        this.applicationDate = applicationDate;
         this.dateOfIssue = dateOfIssue;
         this.dueDate = dueDate;
         this.loanAmount = loanAmount;
         this.interestRate = interestRate;
+        this.firstSeconder = firstSeconder;
+        this.secondSeconder = secondSeconder;
     }
 
     public Long getLoanId() {
@@ -86,16 +108,43 @@ public class Loan {
         this.interestRate = interestRate;
     }
 
+    public Member getFirstSeconder() {
+        return firstSeconder;
+    }
+
+    public void setFirstSeconder(Member firstSeconder) {
+        this.firstSeconder = firstSeconder;
+    }
+
+    public Member getSecondSeconder() {
+        return secondSeconder;
+    }
+
+    public void setSecondSeconder(Member secondSeconder) {
+        this.secondSeconder = secondSeconder;
+    }
+
+    public LocalDate getApplicationDate() {
+        return applicationDate;
+    }
+
+    public void setApplicationDate(LocalDate applicationDate) {
+        this.applicationDate = applicationDate;
+    }
+
     @Override
     public String toString() {
         return "Loan{" +
                 "loanId=" + loanId +
                 ", loanNumber=" + loanNumber +
                 ", installmentList=" + installmentList +
+                ", applicationDate=" + applicationDate +
                 ", dateOfIssue=" + dateOfIssue +
                 ", dueDate=" + dueDate +
                 ", loanAmount=" + loanAmount +
                 ", interestRate=" + interestRate +
+                ", firstSeconder=" + firstSeconder +
+                ", secondSeconder=" + secondSeconder +
                 '}';
     }
 }
