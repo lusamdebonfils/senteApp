@@ -5,10 +5,13 @@
 </head>
 <body>
 <th:block layout:fragment="content">
-    <div class="container">
-        <h1>List of Accounts</h1>
+    <div class="container mt-3 mb-3">
+        <h2 class="mb-5">
+            List of Accounts
+            <a href="/senteapp/account/new" class="btn btn-outline-primary btn-lg float-right">Create New Account</a>
+        </h2>
 
-        <table class="table table-striped" style="width: auto">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -16,6 +19,7 @@
                 <th scope="col">Account Name</th>
                 <th scope="col">Account Type</th>
                 <th scope="col">Date created</th>
+                <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -25,12 +29,18 @@
                     <td th:text="${account.accountNumber}"></td>
                     <td th:text="${account.accountType.accountTypeName}"></td>
                     <td th:text="${#temporals.format(account.dateCreated, 'MMM dd, yyyy')}"></td>
+                    <td>
+                        <a href="" class="btn btn-outline-info">View</a>
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-outline-warning">Edit</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
 
-        <div>
-            <ul class="pagination">
+        <div class="d-flex justify-content-center">
+            <ul class="pagination pagination-lg">
                 <li class="page-item disabled">
                     <a class="page-link" href="#">Pages: </a>
                 </li>
