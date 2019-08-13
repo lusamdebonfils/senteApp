@@ -3,6 +3,8 @@ package edu.mum.cs.cs425.finalproject.senteapp.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -26,6 +28,7 @@ public class Account {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_type_id")
+    @NotNull(message = "Account type required")
     private AccountType accountType;
 
     public Account() {
