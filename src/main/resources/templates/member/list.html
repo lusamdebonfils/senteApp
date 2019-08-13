@@ -17,12 +17,13 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Product Number</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Product Price</th>
-                    <th scope="col"> Qty in Stock </th>
-                    <th scope="col"> Date Supplied </th>
-                    <th scope="col"> Supplier Name </th>
+                    <th scope="col">Member Number</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">MiddleName</th>
+                    <th scope="col"> LastName </th>
+                    <th scope="col">Contact </th>
+                    <th scope="col"> Address </th>
+                    <th scope="col">&nbsp;</th>
 
                     <th scope="col">Actions</th>
                     <th scope="col">&nbsp;</th>
@@ -30,20 +31,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="product,iterStat : ${products}">
+                <tr th:each="member,iterStat : ${members}">
                     <th scope="row" th:text="${iterStat.count}"></th>
-                    <td th:text="${product.productNumber}"></td>
-                    <td th:text="${product.productName}"></td>
-                    <td th:text="${product.unitPrice}"></td>
-                    <td th:text="${product.quantityInStock}"></td>
-                    <td th:text="${product.dateSupplied}"></td>
-                    <td th:text="${product.supplier.supplierName}"></td>
+                    <td th:text="${member.memberNumber}"></td>
+                    <td th:text="${member.firstName}"></td>
+                    <td th:text="${member.middleName}"></td>
+                    <td th:text="${member.lastName}"></td>
+                    <td th:text="${member.contactNumber}"></td>
+                    <td th:text="${member.address}"></td>
+                    <td><a href="#">View Record</a></td>
 
-                    <td><a href="#">Edit Product</a></td>
+                    <td><a href="#">Edit Member</a></td>
 
                     <td>
 
-                        <a href="#">Delete Product</a>
+                        <a href="#">Delete Member</a>
 
                     </td>
                 </tr>

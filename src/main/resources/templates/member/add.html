@@ -30,11 +30,20 @@
 
                         </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="contactNumber">Contact Number </label>
+                            <input id="contactNumber" name="contactNumber" type="number" class="form-control"  aria-describedby="contactNumberHelp" placeholder="e.g +1 234 567 8910"
+                                   th:value="${member.getContactNumber()}">
+
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-group">
                                 <label for="firstName">First Name</label>
-                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{lastName}"
                                       class="alert alert-danger"></span>
                                 <input id="firstName" name="firstName" type="text" class="form-control"  aria-describedby="firstNameHelp" placeholder="Firstname"
                                        th:value="${member.firstName}">
@@ -61,92 +70,73 @@
                         </div>
                     </div>
 
+                    <div class="col-md-12">
+                        <h4>Add Member Address</h4>
 
+                        <p>
+                        <ul> <li><b><i>*Please Fill All Required Fields.</i></b></li></ul>
+                        </p>
 
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="contactNumber">Contact Number </label>
-                            <input id="contactNumber" name="contactNumber" type="number" class="form-control"  aria-describedby="contactNumberHelp" placeholder="e.g +1 234 567 8910"
-                                   th:value="${member.contactNumber}">
-
-                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="dateJoined">Join Date </label>
-                            <input id="dateJoined" name="dateJoined" type="date" class="form-control"  aria-describedby="dateJoinedHelp"
-                                   th:value="${member.dateJoined}">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 10px">
-
-
-
-                <div >
-                    <h4>Add Member Address</h4>
-
-                    <p>
-                    <ul> <li><b><i>*Please Fill All Required Fields.</i></b></li></ul>
-                    </p>
-
-                </div>
-                </div>
-
-                <div class="row" style="margin-top: 10px">
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="street">Street Name </label>
-                            <input id="street" name="street" type="text" class="form-control"  aria-describedby=streetHelp" placeholder="Street Name"
+                            <label for="lastName">Street </label>
+                            <input id="address.street" name="address.state" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"
                                    th:value="${address.street}">
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="city">City </label>
-                            <input id="city" name="city" type="text" class="form-control"  aria-describedby=cityHelp" placeholder="City"
-                                   th:value="${address.city}">
-
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="state">State </label>
-                            <input id="state" name="state" type="text" class="form-control"  aria-describedby=stateHelp" placeholder="State"
+                            <label for="lastName">State </label>
+                            <input id="address.state" name="address.state" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"
                                    th:value="${address.state}">
 
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="zip">ZipCode </label>
-                            <input id="zip" name="zip" type="text" class="form-control"  aria-describedby=zipHelp" placeholder="Zip Code"
+                            <label for="lastName">City </label>
+                            <input id="address.city" name="address.city" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"
+                                   th:value="${address.city}">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lastName">Zip </label>
+                            <input id="address.zip" name="address.zip" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"
                                    th:value="${address.zip}">
 
                         </div>
                     </div>
-
-
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="country">Country </label>
-                            <input id="country" name="country" type="text" class="form-control"  aria-describedby=countryHelp" placeholder="Country"
+                            <label for="lastName">Country </label>
+                            <input id="address.country" name="address.country" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"
                                    th:value="${address.country}">
 
                         </div>
                     </div>
+
+
+
                 </div>
+                <div class="row" style="margin-top: 10px">
+                </div>
+                <!--            </fieldset>-->
 
-                <div style="float:right;">
-                    <button id="btnSubmit" type="submit" class="btn btn-outline-success btn-lg" style="color: #31ccb4">Save Member</button>
-                    <a href="/senteapp/member/list" class="btn btn-outline-warning btn-lg" style="color: crimson">Cancel</a>&nbsp;&nbsp;&nbsp;
 
+
+
+                <div class="row" style="margin-top: 10px">
+
+                    <div style="float:right;">
+                        <button id="btnSubmit" type="submit" class="btn btn-outline-success btn-lg" style="color: #31ccb4">Save Member</button>
+                        <a href="/senteapp/member/list" class="btn btn-outline-warning btn-lg" style="color: crimson">Cancel</a>&nbsp;&nbsp;&nbsp;
+
+                    </div>
                 </div>
             </fieldset>
         </form>

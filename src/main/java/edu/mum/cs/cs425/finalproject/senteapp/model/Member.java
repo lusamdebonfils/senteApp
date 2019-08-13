@@ -1,5 +1,7 @@
 package edu.mum.cs.cs425.finalproject.senteapp.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -20,7 +22,7 @@ public class Member {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "recordId")
     private  Record record;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateJoined;
 
 
