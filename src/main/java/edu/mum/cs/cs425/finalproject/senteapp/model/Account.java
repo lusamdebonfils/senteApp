@@ -1,6 +1,9 @@
 package edu.mum.cs.cs425.finalproject.senteapp.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "accounts")
@@ -10,6 +13,17 @@ public class Account {
     private Long accountId;
     private String accountNumber;
     private String accountName;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateCreated;
+
+    public LocalDate getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(LocalDate dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_type_id")
     private AccountType accountType;
@@ -17,9 +31,10 @@ public class Account {
     public Account() {
     }
 
-    public Account(String accountNumber, String accountName, AccountType accountType) {
+    public Account(String accountNumber, String accountName, LocalDate dateCreated, AccountType accountType) {
         this.accountNumber = accountNumber;
         this.accountName = accountName;
+        this.dateCreated = dateCreated;
         this.accountType = accountType;
     }
 
@@ -61,6 +76,7 @@ public class Account {
                 "accountId=" + accountId +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", accountName='" + accountName + '\'' +
+                ", dateCreated=" + dateCreated +
                 ", accountType=" + accountType +
                 '}';
     }
