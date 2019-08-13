@@ -72,16 +72,13 @@ public class Address {
     public void setCountry(String country) {
         this.country = country;
     }
+    public String getAddressDetails(){
+        return city + " - "+country;
+    }
+
 
     @Override
     public String toString() {
-        return "Address{" +
-                "addressId=" + addressId +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zip='" + zip + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+        return street + ", " + city + " - " + state + ", " + zip + " " + country;
     }
 }
