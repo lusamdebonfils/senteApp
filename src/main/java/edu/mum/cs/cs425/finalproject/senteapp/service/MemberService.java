@@ -8,5 +8,6 @@ public interface MemberService {
         public abstract Member saveMember(Member member);
         public abstract List<Member> getAllMembers();
         public abstract Member getMemberById(Long memberId);
+        public abstract Double calculateMemberAccountBalance(Long memberId);
 
 }
