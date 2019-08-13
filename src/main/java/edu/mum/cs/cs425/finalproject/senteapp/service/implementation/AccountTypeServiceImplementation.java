@@ -10,12 +10,22 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AccountTypeImplementation implements AccountTypeService {
+public class AccountTypeServiceImplementation implements AccountTypeService {
     @Autowired
     private AccountTypeRepository accountTypeRepository;
 
     @Override
     public Page<AccountType> getAllAccountTypes(int pageNo) {
         return accountTypeRepository.findAll(PageRequest.of(pageNo, 5, Sort.by("accountTypeName")));
+    }
+
+    @Override
+    public AccountType addNewAccountType(AccountType accountType) {
+        return accountTypeRepository.save(accountType);
+    }
+
+    @Override
+    public AccountType getAccountTypeById(Long accountTypeId) {
+        return accountTypeRepository.findById(accountTypeId).orElse(null);
     }
 }
