@@ -5,45 +5,41 @@
 </head>
 <body>
 <th:block layout:fragment="content">
-    <div >
-        <h1>List of Products</h1>
+    <div class="container">
+        <h3>List of Account Types
+            <a href="/senteapp/accounttype/add" class="btn btn-outline-danger btn-lg float-right">Create new account type</a>
+        </h3>
 
-        <table class="table table-striped" style="width: auto">
+        <table class="table table-striped mt-5" >
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Product Number</th>
-                <th scope="col">Name</th>
-                <th scope="col">Unit Price</th>
-                <th scope="col">Quantity in Stock</th>
-                <th scope="col">Date Supplied</th>
+                <th scope="col">Account Type Number</th>
+                <th scope="col">Account Type Name</th>
+                <th scope="col">Actions</th>
 
             </tr>
             </thead>
             <tbody>
             <tr th:each="accountType, iterStat : ${accounttypes}">
                 <th scope="row" th:text="${iterStat.count}"></th>
-<!--                <td th:text="${product.productNumber}"></td>-->
-<!--                <td th:text="${product.name}"></td>-->
-<!--                <td th:text="${product.unitPrice}"></td>-->
-<!--                <td th:text="${product.quantityInStock}"></td>-->
-<!--                <td th:text="${product.dateSupplied}"></td>-->
-
+                <td th:text="${accountType.accountTypeNumber}"></td>
+                <td th:text="${accountType.accountTypeName}"></td>
+                <td><a class="btn btn-primary" th:href="@{'/senteapp/accounttype/edit{accountTypeId}'(accountTypeId=${accountType.accountTypeId})}">Edit</a></td>
             </tr>
             </tbody>
         </table>
 
         <div>
-<!--            <ul class="pagination">-->
-<!--                <li class="page-item disabled">-->
-<!--                    <a class="page-link" href="#">Pages: </a>-->
-<!--                </li>-->
-<!--                <li th:each="i : ${#numbers.sequence(1, products.totalPages)}"-->
-<!--                    th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'">-->
-<!--                    <a th:href="@{/srm/product/list(pageno=${i-1})}"-->
-<!--                       th:text="${i}" class = "page-link"></a>-->
-<!--                </li>-->
-<!--            </ul>-->
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Pages: </a>
+                </li>
+                <li th:each="i : ${#numbers.sequence(1, accounttypes.totalPages)}"
+                    th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'">
+                    <a th:href="@{/senteapp/accounttype/list(pageNo=${i-1})}" th:text="${i}" class = "page-link"></a>
+                </li>
+            </ul>
         </div>
     </div>
 </th:block>
