@@ -18,4 +18,16 @@ public class AccountTypeServiceImplementation implements AccountTypeService {
     public Page<AccountType> getAllAccountTypes(int pageNo) {
         return accountTypeRepository.findAll(PageRequest.of(pageNo, 5, Sort.by("accountTypeName")));
     }
+
+
+    @Override
+    public AccountType addNewAccountType(AccountType accountType) {
+        return accountTypeRepository.save(accountType);
+    }
+
+    @Override
+    public AccountType getAccountTypeById(Long accountTypeId) {
+        return accountTypeRepository.findById(accountTypeId).orElse(null);
+    }
+
 }
