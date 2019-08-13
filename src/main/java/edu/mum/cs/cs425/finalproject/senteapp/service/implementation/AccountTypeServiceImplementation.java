@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountTypeServiceImplementation implements AccountTypeService {
     @Autowired
@@ -16,7 +18,7 @@ public class AccountTypeServiceImplementation implements AccountTypeService {
 
     @Override
     public Page<AccountType> getAllAccountTypes(int pageNo) {
-        return accountTypeRepository.findAll(PageRequest.of(pageNo, 5, Sort.by("accountTypeName")));
+        return accountTypeRepository.findAll(PageRequest.of(pageNo, 3, Sort.by("accountTypeName")));
     }
 
 
@@ -28,6 +30,11 @@ public class AccountTypeServiceImplementation implements AccountTypeService {
     @Override
     public AccountType getAccountTypeById(Long accountTypeId) {
         return accountTypeRepository.findById(accountTypeId).orElse(null);
+    }
+
+    @Override
+    public List<AccountType> getAllAccountTypesList() {
+        return accountTypeRepository.findAll();
     }
 
 }
