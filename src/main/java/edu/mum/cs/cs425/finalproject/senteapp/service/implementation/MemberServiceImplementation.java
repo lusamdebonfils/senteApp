@@ -4,6 +4,9 @@ import edu.mum.cs.cs425.finalproject.senteapp.model.Member;
 import edu.mum.cs.cs425.finalproject.senteapp.repository.MemberRepository;
 
 import edu.mum.cs.cs425.finalproject.senteapp.service.MemberService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,12 +26,20 @@ public class MemberServiceImplementation implements MemberService {
     }
 
     @Override
-    public List<Member> getAllMembers() {
-        return memberRepository.findAll();
+    public Page<Member> getAllMembers(int pageNo) {
+        return memberRepository.findAll(PageRequest.of(pageNo, 3,Sort.by("firstName")));
     }
 
     @Override
     public Member getMemberById(Long memberId) {
         return memberRepository.findById(memberId).orElse(null);
+    }
+
+
+
+    @Override
+    public Page<Member> searchMembers(String search, Integer pageNo) {
+        return memberRepository.findAllByLastNameContainsOrFirstNameContainsOrMiddleNameContains(search, search, search, PageRequest.of(pageNo, 2,Sort.by("firstName")));
+
     }
 }
