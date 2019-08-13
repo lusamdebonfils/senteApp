@@ -6,11 +6,24 @@
 </head>
 <body>
 
+
+
 <th:block layout:fragment="content">
 
-    <div class="container mt-3 mb-3">
 
-        <h2 class="mb-5">Active Account Members</h2>
+
+    <div class="container mt-3">
+
+        <h2 class="mb-4 mb-3">Active Account Members
+            <a href="/senteapp/member/add" class="btn btn-outline-primary btn-lg float-right">Create New Member</a>
+        </h2>
+        <div style="float: left;margin-bottom: 20px">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+
 
         <div class="container">
             <table class="table table-striped">
@@ -39,18 +52,25 @@
                     <td th:text="${member.lastName}"></td>
                     <td th:text="${member.contactNumber}"></td>
                     <td th:text="${member.address}"></td>
-                    <td><a href="#">View Record</a></td>
+                    <td><a href="#">Records</a></td>
+                    <td><a class="btn btn-outline-warning" th:href="@{'/senteapp/member/edit{memberId}'(memberId=${member.memberId})}">Edit</a></td>
+                    <td><a href="#">Deactivate</a></td>
 
-                    <td><a class="btn btn-outline-warning" th:href="@{'/senteapp/member/edit{memberId}'(memberId=${member.memberId})}">Edit Member</a></td>
 
-                    <td>
-
-                        <a href="#">Deactivate Member</a>
-
-                    </td>
                 </tr>
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                <ul class="pagination pagination-lg">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Pages: </a>
+                    </li>
+                    <li th:each="i : ${#numbers.sequence(1, members.totalPages)}"
+                        th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'">
+                        <a th:href="@{/senteapp/member/list(pageNo=${i-1})}" th:text="${i}" class = "page-link"></a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
     </div>

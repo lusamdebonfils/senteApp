@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import org.springframework.stereotype.Controller;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -46,4 +47,5 @@ public class LoanController {
         System.out.println("\n\n\n" + loan + "\n\n\n");
         return "redirect:/senteapp/accounttype/list";
     }
-}
+
+
