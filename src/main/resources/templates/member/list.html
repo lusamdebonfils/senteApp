@@ -1,28 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.tymeleaf.org">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/masterlayout.html}">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Sente Application</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-1OYccka9EByiS23wvPFiYHBPRAgU91xYVFb8g8sen6vRiBI5Uko6+B87q8zPGUnA" crossorigin="anonymous">
 </head>
 <body>
 
-<div style="padding:1em;">
-    <div th:replace="fragments/navs ::topnav">
-    </div>
-    <div class="row mt-5">
-        <div class="col-3 bg-light shadow p-3 mb-5 mr-3 ml-5">
-            <div th:replace="fragments/navs ::sidenav">
-            </div>
+<th:block layout:fragment="content">
 
+    <div style="padding-top:1em;" class="container">
+
+        <h3 style="padding-top: 50px">Active Account Members</h3>
+        <hr/>
+        <div style="font-size: 1em">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Number</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Price</th>
+                    <th scope="col"> Qty in Stock </th>
+                    <th scope="col"> Date Supplied </th>
+                    <th scope="col"> Supplier Name </th>
+
+                    <th scope="col">Actions</th>
+                    <th scope="col">&nbsp;</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product,iterStat : ${products}">
+                    <th scope="row" th:text="${iterStat.count}"></th>
+                    <td th:text="${product.productNumber}"></td>
+                    <td th:text="${product.productName}"></td>
+                    <td th:text="${product.unitPrice}"></td>
+                    <td th:text="${product.quantityInStock}"></td>
+                    <td th:text="${product.dateSupplied}"></td>
+                    <td th:text="${product.supplier.supplierName}"></td>
+
+                    <td><a href="#">Edit Product</a></td>
+
+                    <td>
+
+                        <a href="#">Delete Product</a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="col-8 bg-white">
-            <h1>Members</h1>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci aliquid aut, beatae consequatur, deleniti distinctio ea eius eligendi enim excepturi fugit harum hic id illo in incidunt inventore iste laboriosam magnam minima obcaecati officiis placeat quisquam quod ratione repellat repudiandae temporibus veniam voluptas. Ab, alias assumenda at culpa cum deserunt dolor doloribus et explicabo incidunt iure iusto libero nam natus nesciunt nobis nostrum porro provident quia reprehenderit, similique, totam ullam ut voluptatem voluptatum. Dolor et fugit in quasi sunt!
-        </div>
 
     </div>
-</div>
 
+
+
+
+</th:block>
 </body>
 </html>

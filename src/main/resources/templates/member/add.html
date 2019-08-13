@@ -30,8 +30,6 @@
 
                         </div>
                     </div>
-                </div>
-                <div class="row" style="margin-top: 10px">
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-group">
@@ -43,8 +41,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row" style="margin-top: 10px">
+
+
 
                     <div class="col-md-6">
                         <div class="form-group">
@@ -54,23 +52,6 @@
 
                         </div>
                     </div>
-                </div>
-                <div class="row" style="margin-top: 10px">
-
-<!--                    <div class="col-md-6">-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="supplier">Choose Supplier </label>-->
-
-<!--                            <select class="form-control"   id="supplier" name="supplier">-->
-<!--                                <option value="0">Select supplier</option>-->
-<!--                                <option th:each="supplier : ${suppliers}" th:value="${supplier.supplierId}" th:text="${supplier.supplierName}"></option>-->
-<!--                            </select>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-                </div>
-                <div class="row" style="margin-top: 10px">
-
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="lastName">Last Name </label>
@@ -79,20 +60,18 @@
 
                         </div>
                     </div>
-                </div>
-                <div class="row" style="margin-top: 10px">
+
+
+
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="contactNumber">Contact Number </label>
-                            <input id="contactNumber" name="contactNumber" type="number" class="form-control"  aria-describedby="contactNumberHelp"
+                            <input id="contactNumber" name="contactNumber" type="number" class="form-control"  aria-describedby="contactNumberHelp" placeholder="e.g +1 234 567 8910"
                                    th:value="${member.contactNumber}">
 
                         </div>
                     </div>
-                </div>
-                <div class="row" style="margin-top: 10px">
-
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="dateJoined">Join Date </label>
@@ -102,7 +81,67 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" style="margin-top: 10px">
 
+
+
+                <div >
+                    <h4>Add Member Address</h4>
+
+                    <p>
+                    <ul> <li><b><i>*Please Fill All Required Fields.</i></b></li></ul>
+                    </p>
+
+                </div>
+                </div>
+
+                <div class="row" style="margin-top: 10px">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="street">Street Name </label>
+                            <input id="street" name="street" type="text" class="form-control"  aria-describedby=streetHelp" placeholder="Street Name"
+                                   th:value="${address.street}">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="city">City </label>
+                            <input id="city" name="city" type="text" class="form-control"  aria-describedby=cityHelp" placeholder="City"
+                                   th:value="${address.city}">
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="state">State </label>
+                            <input id="state" name="state" type="text" class="form-control"  aria-describedby=stateHelp" placeholder="State"
+                                   th:value="${address.state}">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="zip">ZipCode </label>
+                            <input id="zip" name="zip" type="text" class="form-control"  aria-describedby=zipHelp" placeholder="Zip Code"
+                                   th:value="${address.zip}">
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="country">Country </label>
+                            <input id="country" name="country" type="text" class="form-control"  aria-describedby=countryHelp" placeholder="Country"
+                                   th:value="${address.country}">
+
+                        </div>
+                    </div>
+                </div>
 
                 <div style="float:right;">
                     <button id="btnSubmit" type="submit" class="btn btn-outline-success btn-lg" style="color: #31ccb4">Save Member</button>
