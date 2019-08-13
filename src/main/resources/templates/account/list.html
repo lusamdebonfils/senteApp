@@ -33,7 +33,7 @@
                         <a href="" class="btn btn-outline-info">View</a>
                     </td>
                     <td>
-                        <a href="" class="btn btn-outline-warning">Edit</a>
+                        <a class="btn btn-outline-warning" th:href="@{'/senteapp/account/edit{accountId}'(accountId=${account.accountId})}">Edit</a>
                     </td>
                 </tr>
             </tbody>

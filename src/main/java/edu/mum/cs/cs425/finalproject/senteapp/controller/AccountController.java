@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -45,6 +42,29 @@ public class AccountController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "account/new";
+        }
+        accountService.saveAccount(account);
+        return "redirect:/senteapp/account/list";
+    }
+
+    @GetMapping(value = {"/senteapp/account/edit{accountId}"})
+    public String editAccount(@PathVariable Long accountId, Model model) {
+
+        Account account = accountService.getAccountById(accountId);
+        if (account != null) {
+            model.addAttribute("account", account);
+            model.addAttribute("accounttypes", accountTypeService.getAllAccountTypesList());
+            return "account/edit";
+        }
+        return "account/list";
+    }
+
+    @PostMapping(value = {"/senteapp/account/edit"})
+    public String updateAccount(@Valid @ModelAttribute("account") Account account,
+                             BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            return "account/edit";
         }
         accountService.saveAccount(account);
         return "redirect:/senteapp/account/list";
