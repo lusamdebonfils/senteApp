@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/masterlayout.html}">
+<head>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <h1>Loan application form</h1><p></p>
+    <div>
+        <form name="newaccounttype" id="newaccounttype" method="post" action="/senteapp/loan/apply" th:object="${loan}">
+            <fieldset>
+                <input type="hidden" name="accountTypeId" th:value="${loan.loanId}"/>
+                <div class="row" style="width: 90%; margin: 1%"  >
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="loanAmount">Loan Amount</label>
+                            <span th:if="${#fields.hasErrors('loanAmount')}" th:errors="*{loanAmount}"
+                                  class="alert alert-danger"></span>
+                            <input id="loanAmount" name="loanAmount" type="text" class="form-control" th:value="${loan.loanAmount}"
+                                   placeholder="Loan Amount" required = "required">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="firstSeconder">First Surety</label>
+                            <span th:if="${#fields.hasErrors('firstSeconder')}" th:errors="*{firstSeconder}"
+                                  class="alert alert-danger"></span>
+                            <select class="form-control"  id="firstSeconder" name="firstSeconder">
+                                <option value="0">Select first surety</option>
+                                <option th:each="member : ${members}" th:value="${member.memberId}" th:text="${member.memberNumber} +' - '+${member.firstName}
+                                             +' '+${member.middleName} +' '+${member.lastName}  "></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="firstSeconder">Second Surety</label>
+                            <span th:if="${#fields.hasErrors('secondSeconder')}" th:errors="*{secondSeconder}"
+                                  class="alert alert-danger"></span>
+                            <select class="form-control"  id="secondSeconder" name="secondSeconder">
+                                <option value="0">Select second surety</option>
+                                <option th:each="member : ${members}" th:value="${member.memberId}" th:text="${member.memberNumber} +' - '+${member.firstName}
+                                             +' '+${member.middleName} +' '+${member.lastName}  "></option>
+                            </select>
+                        </div>
+                    </div>
+
+                <div style="float:right; width: 90%">
+                    <a href="/senteapp" class="btn btn-outline-warning" style="float: left">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    <button id="btnSubmit" type="submit" class="btn btn-outline-success">Apply for Loan</button>
+                </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</th:block>
+</body>
+</html>

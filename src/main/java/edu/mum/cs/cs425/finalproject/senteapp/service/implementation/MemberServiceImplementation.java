@@ -36,6 +36,11 @@ public class MemberServiceImplementation implements MemberService {
     }
 
 
+    @Override
+    public Double calculateMemberAccountBalance(Long memberId) {
+        return null;
+
+    }
 
     @Override
     public Page<Member> searchMembers(String search, Integer pageNo) {

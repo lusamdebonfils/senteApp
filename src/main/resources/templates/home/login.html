@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Sente App - Login</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-1OYccka9EByiS23wvPFiYHBPRAgU91xYVFb8g8sen6vRiBI5Uko6+B87q8zPGUnA" crossorigin="anonymous">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!--    nav class="navbar navbar-expand-lg navbar-dark bg-primary-->
+        <a class="navbar-brand" href="/">sente Application</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    </nav>
+
+    <div class="container">
+        <h3>Sign In</h3>
+        <hr/>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card border-secondary mb-4" style="max-width: 60rem;">
+                        <div class="card-header">Use your Senteapp Account</div>
+                        <div class="card-body">
+                            <h4 class="card-title">Sign In with your Senteapp Account</h4>
+                            <p class="card-text">
+                                Enter your Senteapp Username and Password below, to sign in.
+                            </p>
+                            <div>
+                                <form name="formLogin" th:action="@{/senteapp/login}" method="post">
+                                    <div th:if="${param.error}" class="alert alert-dismissible alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        Invalid username and/or password.
+                                    </div>
+                                    <div th:if="${param.logout}" class="alert alert-dismissible alert-primary">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        You have been signed out.
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtUsername">Username</label>
+                                        <!-- <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                                              class="alert alert-danger"></span> -->
+                                        <input id="txtUsername" name="username" type="text" class="form-control" autofocus="autofocus"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtPassword">Password</label>
+                                        <!-- <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                              class="alert alert-danger"></span> -->
+                                        <input id="txtPassword" name="password" type="password" class="form-control"/>
+                                    </div>
+                                    <div style="float:right;">
+                                        <a href="/senteapp" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                                        <button id="btnSubmit" type="submit" class="btn btn-outline-success">Sign In</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
