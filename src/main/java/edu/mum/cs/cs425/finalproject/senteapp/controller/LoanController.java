@@ -28,24 +28,24 @@ public class LoanController {
     private LoanService loanService;
 
     @GetMapping(value = "/senteapp/loan/apply")
-    public String displayNewProductPage(Model model){
+    public String displayNewProductPage(Model model) {
         model.addAttribute("loan", new Loan());
         model.addAttribute("members", memberService.getAllMembers());
         return "loan/apply";
     }
 
     @PostMapping(value = "/senteapp/loan/apply")
-    public String saveProduct(@Valid @ModelAttribute Loan loan, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
+    public String saveProduct(@Valid @ModelAttribute Loan loan, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "loan/apply";
         }
         List<Member> members = new ArrayList<>();
-       // members.add()
+        // members.add()
         loan.setApplicationDate(LocalDate.now());
         loan = loanService.saveLoanRecord(loan);
         System.out.println("\n\n\n" + loan + "\n\n\n");
         return "redirect:/senteapp/accounttype/list";
     }
 
-
+}

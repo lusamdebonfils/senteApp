@@ -16,6 +16,7 @@ public class LoanServiceImplementation implements LoanService {
     private LoanRepository loanRepository;
     @Autowired
     private MemberService memberService;
+
     @Override
     public Loan saveLoanRecord(Loan s) {
         return loanRepository.save(s);
@@ -24,9 +25,10 @@ public class LoanServiceImplementation implements LoanService {
     @Override
     public Double loanValidity(List<Member> members) {
         double totalEligibleLoanAmount = 0;
-        for(Member member: members){
+        for (Member member : members) {
             totalEligibleLoanAmount += memberService.calculateMemberAccountBalance(member.getMemberId());
         }
         return totalEligibleLoanAmount;
     }
+}
 
