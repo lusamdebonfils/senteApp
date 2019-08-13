@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountServiceImplementation implements AccountService {
 
@@ -22,5 +24,10 @@ public class AccountServiceImplementation implements AccountService {
     @Override
     public Account saveAccount(Account account) {
         return accountRepository.save(account);
+    }
+
+    @Override
+    public List<Account> getAllAccountsList() {
+        return accountRepository.findAll();
     }
 }
