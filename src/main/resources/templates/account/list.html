@@ -45,7 +45,7 @@
                     <a class="page-link" href="#">Pages: </a>
                 </li>
                 <li th:each="i : ${#numbers.sequence(1, accounts.totalPages)}"
-                    th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'">
+                    th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'" th:if="${i} >= 1" >
                     <a th:href="@{/senteapp/account/list(pageNo=${i-1})}"
                        th:text="${i}" class = "page-link"></a>
                 </li>

@@ -48,7 +48,9 @@
                         <div class="form-group">
                             <label for="accountType">Account Type</label>
                             <select class="form-control"  id="accountType" name="accountType">
-                                <option value="0">Select Type</option>
+                                <span th:if="${#fields.hasErrors('accountType')}" th:errors="*{accountType}"
+                                      class="alert alert-danger"></span>
+                                <option th:value="${account.accountType.accountTypeId}" th:text="${account.accountType.accountTypeName}"></option>
                                 <option th:each="acct_typ : ${accounttypes}" th:value="${acct_typ.accountTypeId}" th:text="${acct_typ.accountTypeName}"></option>
                             </select>
                         </div>
