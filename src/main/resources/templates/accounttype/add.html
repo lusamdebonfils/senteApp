@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/masterlayout.html}">
+<head>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <h1>Add new account type form</h1><p></p>
+    <div>
+        <form name="newaccounttype" id="newaccounttype" method="post" action="/senteapp/accounttype/add" th:object="${accountType}">
+            <fieldset>
+                <input type="hidden" name="accountTypeId" th:value="${accountType.accountTypeId}"/>
+                    <div class="row" style="width: 90%; margin: 1%"  >
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="accountTypeNumber">Account Type Number</label>
+                                <span th:if="${#fields.hasErrors('accountTypeNumber')}" th:errors="*{accountTypeNumber}"
+                                      class="alert alert-danger"></span>
+                                <input id="accountTypeNumber" name="accountTypeNumber" type="number" class="form-control" th:value="${accountType.accountTypeNumber}"
+                                       placeholder="Account Type Number" required = "required">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="accountTypeName">Account Type Name</label>
+                                <span th:if="${#fields.hasErrors('accountTypeName')}" th:errors="*{accountTypeName}"
+                                      class="alert alert-danger"></span>
+                                <input id="accountTypeName" name="accountTypeName" type="text" class="form-control" th:value="${accountType.accountTypeName}"
+                                       placeholder="accountTypeName" required = "required">
+                            </div>
+                        </div>
+                </div>
+                <div style="float:right; width: 90%">
+                    <a href="/senteapp" class="btn btn-outline-warning" style="float: left">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    <button id="btnSubmit" type="submit" class="btn btn-outline-success">Create Account Type</button>
+                </div>
+    </fieldset>
+    </form>
+    </div>
+</th:block>
+</body>
+</html>
