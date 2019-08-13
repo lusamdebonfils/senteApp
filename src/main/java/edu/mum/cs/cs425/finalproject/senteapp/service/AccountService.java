@@ -10,5 +10,6 @@ public interface AccountService {
     public Page<Account> getAllAccounts(int pageNo);
     public Account saveAccount(Account account);
     public List<Account> getAllAccountsList();
+    public Account getAccountById(Long accountId);
 
 }

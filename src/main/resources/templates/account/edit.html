@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/masterlayout.html}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<th:block layout:fragment="content">
+    <div class="container mt-3 mb-3">
+        <h2 class="mb-5">
+            Edit Account Page
+        </h2>
+        <form name="editaccountform" id="newaccount" method="post" action="/senteapp/account/edit" th:object="${account}">
+            <fieldset>
+                <input type="hidden" name="accountId" th:value="${account.accountId}"/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="accountNumber">Account Number</label>
+                            <span th:if="${#fields.hasErrors('accountNumber')}" th:errors="*{accountNumber}"
+                                  class="alert alert-danger"></span>
+                            <input id="accountNumber" name="accountNumber" type="number" class="form-control" th:value="${account.accountNumber}"
+                                   placeholder="Account Number" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="accountName">Account Name</label>
+                            <span th:if="${#fields.hasErrors('accountName')}" th:errors="*{accountName}"
+                                  class="alert alert-danger"></span>
+                            <input id="accountName" name="accountName" type="text" class="form-control" th:value="${account.accountName}"
+                                   placeholder="accountName" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="dateCreated">Date Created</label>
+                            <span th:if="${#fields.hasErrors('dateCreated')}" th:errors="*{dateCreated}"
+                                  class="alert alert-danger"></span>
+                            <input id="dateCreated" name="dateCreated" type="date" class="form-control"
+                                   aria-describedby="dateCreatedHelp" th:value="${account.dateCreated}"/>
+                            <small id="dateCreatedHelp" class="form-text text-muted">Enter a valid Date</small>
+                        </div>
 
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="accountType">Account Type</label>
+                            <select class="form-control"  id="accountType" name="accountType">
+                                <option value="0">Select Type</option>
+                                <option th:each="acct_typ : ${accounttypes}" th:value="${acct_typ.accountTypeId}" th:text="${acct_typ.accountTypeName}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="float:right; width: 90%">
+                    <a href="/senteapp" class="btn btn-outline-warning" style="float: left">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    <button id="btnSubmit" type="submit" class="btn btn-outline-success">Create Account</button>
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
+</th:block>
 </body>
 </html>
