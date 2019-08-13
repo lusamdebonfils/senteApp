@@ -8,12 +8,9 @@ import java.util.List;
 public interface MemberService {
         public abstract Member saveMember(Member member);
         public abstract Page<Member> getAllMembers(int pageNo);
+        public abstract List<Member> getAllMembers();
         public abstract Member getMemberById(Long memberId);
         public abstract Double calculateMemberAccountBalance(Long memberId);
-
         public abstract Page<Member> searchMembers(String search, Integer pageNo);
-
-        public abstract Double calculateMemberAccountBalance(Long memberId);
-
 
 }
