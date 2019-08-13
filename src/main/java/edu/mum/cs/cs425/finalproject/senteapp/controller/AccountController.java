@@ -2,6 +2,7 @@ package edu.mum.cs.cs425.finalproject.senteapp.controller;
 
 import edu.mum.cs.cs425.finalproject.senteapp.model.Account;
 import edu.mum.cs.cs425.finalproject.senteapp.service.AccountService;
+import edu.mum.cs.cs425.finalproject.senteapp.service.AccountTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,9 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private AccountTypeService accountTypeService;
+
     @GetMapping(value = "/senteapp/account/list")
     public ModelAndView displayAccounts(@RequestParam(defaultValue = "0") Integer pageNo){
         ModelAndView modelAndView = new ModelAndView();
@@ -31,6 +35,7 @@ public class AccountController {
     @GetMapping(value = {"/senteapp/account/new"})
     public String displayNewAccountForm(Model model) {
         model.addAttribute("account", new Account());
+        model.addAttribute("accounttypes", accountTypeService.getAllAccountTypesList());
         return "account/new";
     }
 
@@ -44,5 +49,6 @@ public class AccountController {
         accountService.saveAccount(account);
         return "redirect:/senteapp/account/list";
     }
+
 
 }
