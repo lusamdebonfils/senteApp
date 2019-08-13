@@ -1,6 +1,7 @@
 package edu.mum.cs.cs425.finalproject.senteapp.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "members")
@@ -20,11 +21,13 @@ public class Member {
     @JoinColumn(name = "recordId")
     private  Record record;
 
+    private LocalDate dateJoined;
+
 
     public Member() {
     }
 
-    public Member(Long memberId, Long memberNumber, String firstName, String middleName, String lastName, Address address, String contactNumber, Record record) {
+    public Member(Long memberId, Long memberNumber, String firstName, String middleName, String lastName, Address address, String contactNumber, Record record, LocalDate dateJoined) {
         this.memberId = memberId;
         this.memberNumber = memberNumber;
         this.firstName = firstName;
@@ -33,6 +36,7 @@ public class Member {
         this.address = address;
         this.contactNumber = contactNumber;
         this.record = record;
+        this.dateJoined = dateJoined;
     }
 
     public Long getMemberId() {
@@ -99,6 +103,14 @@ public class Member {
         this.record = record;
     }
 
+    public LocalDate getDateJoined() {
+        return dateJoined;
+    }
+
+    public void setDateJoined(LocalDate dateJoined) {
+        this.dateJoined = dateJoined;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
@@ -108,6 +120,7 @@ public class Member {
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address=" + address +
+                ", dateJoined=" + dateJoined +
                 ", contactNumber='" + contactNumber +
                 '}';
     }
