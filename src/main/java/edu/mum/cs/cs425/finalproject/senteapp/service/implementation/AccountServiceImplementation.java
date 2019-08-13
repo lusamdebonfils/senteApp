@@ -33,6 +33,7 @@ public class AccountServiceImplementation implements AccountService {
 
     @Override
     public Account getAccountById(Long accountId) {
+
         return accountRepository.findById(accountId).orElse(null);
     }
 }
