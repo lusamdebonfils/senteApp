@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AccountTypeImplementation implements AccountTypeService {
+public class AccountTypeServiceImplementation implements AccountTypeService {
     @Autowired
     private AccountTypeRepository accountTypeRepository;
 
