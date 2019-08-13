@@ -4,4 +4,5 @@ import edu.mum.cs.cs425.finalproject.senteapp.model.Address;
 
 public interface AddressService {
     public abstract Address saveAddress(Address address);
+    public abstract Address getAddressById(Long addressId);
 }

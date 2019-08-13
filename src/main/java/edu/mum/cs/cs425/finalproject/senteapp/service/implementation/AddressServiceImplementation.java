@@ -17,4 +17,9 @@ public class AddressServiceImplementation implements AddressService {
     public Address saveAddress(Address address) {
         return addressRepository.save(address);
     }
+
+    @Override
+    public Address getAddressById(Long addressId) {
+        return addressRepository.findById(addressId).orElse(null);
+    }
 }

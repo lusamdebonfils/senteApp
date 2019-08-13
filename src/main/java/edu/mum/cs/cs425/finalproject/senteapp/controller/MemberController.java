@@ -1,6 +1,7 @@
 package edu.mum.cs.cs425.finalproject.senteapp.controller;
 
 
+import edu.mum.cs.cs425.finalproject.senteapp.model.Account;
 import edu.mum.cs.cs425.finalproject.senteapp.model.Address;
 import edu.mum.cs.cs425.finalproject.senteapp.model.Member;
 import edu.mum.cs.cs425.finalproject.senteapp.service.AccountTypeService;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -52,6 +54,31 @@ public class MemberController {
        // address = addressService.saveAddress(address);
 
         return"redirect:/senteapp/member/list";
+    }
+
+    @GetMapping(value = {"/senteapp/member/edit{memberId}"})
+    public String editAccount(@PathVariable Long memberId, Model model) {
+        Member member = memberService.getMemberById(memberId);
+       // Address address = addressService.getAddressById(member.getAddress().getAddressId());
+        //System.out.println(address);
+        if (member != null) {
+            model.addAttribute("member", member);
+            //model.addAttribute("address", addressService.getAddressById(member.getAddress().getAddressId()));
+            //System.out.println(address);
+            return "member/edit";
+        }
+        return "member/list";
+    }
+
+    @PostMapping(value = {"/senteapp/member/edit"})
+    public String updateAccount(@Valid @ModelAttribute("member") Member member,
+                                BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            return "member/edit";
+        }
+        memberService.saveMember(member);
+        return "redirect:/senteapp/member/list";
     }
 
 

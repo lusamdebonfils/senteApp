@@ -8,11 +8,11 @@
 
 <th:block layout:fragment="content">
 
-    <div style="padding-top:1em;" class="container">
+    <div class="container mt-3 mb-3">
 
-        <h3 style="padding-top: 50px">Active Account Members</h3>
-        <hr/>
-        <div style="font-size: 1em">
+        <h2 class="mb-5">Active Account Members</h2>
+
+        <div class="container">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -41,11 +41,11 @@
                     <td th:text="${member.address}"></td>
                     <td><a href="#">View Record</a></td>
 
-                    <td><a href="#">Edit Member</a></td>
+                    <td><a class="btn btn-outline-warning" th:href="@{'/senteapp/member/edit{memberId}'(memberId=${member.memberId})}">Edit Member</a></td>
 
                     <td>
 
-                        <a href="#">Delete Member</a>
+                        <a href="#">Deactivate Member</a>
 
                     </td>
                 </tr>

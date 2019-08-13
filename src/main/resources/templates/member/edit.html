@@ -1,28 +1,128 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.tymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/masterlayout.html}">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Sente Application</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-1OYccka9EByiS23wvPFiYHBPRAgU91xYVFb8g8sen6vRiBI5Uko6+B87q8zPGUnA" crossorigin="anonymous">
 </head>
 <body>
+<th:block layout:fragment="content">
+    <div class="container mt-3 mb-3">
+        <h2 class="mb-5">
+            Edit Member
+        </h2>
+        <form name="editMemberform" id="editMemberform" method="post" action="/senteapp/member/edit" th:object="${member}">
+            <fieldset>
+                <div class="row" style="margin-top: 10px">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="memberNumber">Member Number</label>
+                            <span th:if="${#fields.hasErrors('memberNumber')}" th:errors="*{memberNumber}"
+                                  class="alert alert-danger"></span>
+                            <input id="memberNumber" name="memberNumber" type="number" class="form-control" placeholder="Member Number">
 
-<div style="padding:1em;">
-    <div th:replace="fragments/navs ::topnav">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="contactNumber">Contact Number </label>
+                            <input id="contactNumber" name="contactNumber" type="number" class="form-control"  aria-describedby="contactNumberHelp" placeholder="e.g +1 234 567 8910"
+                                   th:value="${member.getContactNumber()}">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{lastName}"
+                                      class="alert alert-danger"></span>
+                                <input id="firstName" name="firstName" type="text" class="form-control"  aria-describedby="firstNameHelp" placeholder="Firstname"
+                                       th:value="${member.firstName}">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="middleName">Middle Name </label>
+                            <input id="middleName" name="middleName" type="middleName" class="form-control"  aria-describedby="umiddleNameHelp" placeholder="Middlename"
+                                   th:value="${member.middleName}">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lastName">Last Name </label>
+                            <input id="lastName" name="lastName" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"
+                                   th:value="${member.lastName}">
+
+                        </div>
+                    </div>
+
+<!--                    <div class="col-md-12">-->
+<!--                        <h4>Add Member Address</h4>-->
+
+<!--                        <p>-->
+<!--                        <ul> <li><b><i>*Please Fill All Required Fields.</i></b></li></ul>-->
+<!--                        </p>-->
+
+<!--                    </div>-->
+
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="lastName">Street </label>-->
+<!--                            <input id="address.street" name="member.address.state" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"-->
+<!--                                   th:value="${member.address.street}">-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="lastName">State </label>-->
+<!--                            <input id="address.state" name="member.address.state" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"-->
+<!--                                   th:value="${member.address.state}">-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="lastName">City </label>-->
+<!--                            <input id="address.city" name="member.address.city" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"-->
+<!--                                   th:value="${member.address.city}">-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="lastName">Zip </label>-->
+<!--                            <input id="address.zip" name="member.address.zip" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"-->
+<!--                                   th:value="${member.address.zip}">-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="lastName">Country </label>-->
+<!--                            <input id="address.country" name="member.address.country" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"-->
+<!--                                   th:value="${member.address.country}">-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--                <div class="row" style="margin-top: 10px">-->
+<!--                </div>-->
+                </div>
+                <div style="float:right; width: 90%">
+                    <a href="/senteapp" class="btn btn-outline-warning" style="float: left">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    <button id="btnSubmit" type="submit" class="btn btn-outline-success">Update Member</button>
+                </div>
+            </fieldset>
+        </form>
+
     </div>
-    <div class="row mt-5">
-        <div class="col-3 bg-light shadow p-3 mb-5 mr-3 ml-5">
-            <div th:replace="fragments/navs ::sidenav">
-            </div>
-
-        </div>
-        <div class="col-8 bg-white">
-            <h1>Edit Member</h1>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci aliquid aut, beatae consequatur, deleniti distinctio ea eius eligendi enim excepturi fugit harum hic id illo in incidunt inventore iste laboriosam magnam minima obcaecati officiis placeat quisquam quod ratione repellat repudiandae temporibus veniam voluptas. Ab, alias assumenda at culpa cum deserunt dolor doloribus et explicabo incidunt iure iusto libero nam natus nesciunt nobis nostrum porro provident quia reprehenderit, similique, totam ullam ut voluptatem voluptatum. Dolor et fugit in quasi sunt!
-        </div>
-
-    </div>
-</div>
-
+</th:block>
 </body>
 </html>
