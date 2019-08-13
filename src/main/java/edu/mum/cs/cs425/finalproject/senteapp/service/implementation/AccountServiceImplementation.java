@@ -30,4 +30,9 @@ public class AccountServiceImplementation implements AccountService {
     public List<Account> getAllAccountsList() {
         return accountRepository.findAll();
     }
+
+    @Override
+    public Account getAccountById(Long accountId) {
+        return accountRepository.findById(accountId).orElse(null);
+    }
 }

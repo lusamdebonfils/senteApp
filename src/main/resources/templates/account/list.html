@@ -13,14 +13,14 @@
 
         <table class="table table-striped">
             <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Account Number</th>
-                <th scope="col">Account Name</th>
-                <th scope="col">Account Type</th>
-                <th scope="col">Date created</th>
-                <th scope="col">Actions</th>
-            </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Account Number</th>
+                    <th scope="col">Account Name</th>
+                    <th scope="col">Account Type</th>
+                    <th scope="col">Date created</th>
+                    <th scope="col">Actions</th>
+                </tr>
             </thead>
             <tbody>
                 <tr th:each="account, iterStat : ${accounts}">
@@ -33,7 +33,7 @@
                         <a href="" class="btn btn-outline-info">View</a>
                     </td>
                     <td>
-                        <a href="" class="btn btn-outline-warning">Edit</a>
+                        <a class="btn btn-outline-warning" th:href="@{'/senteapp/account/edit{accountId}'(accountId=${account.accountId})}">Edit</a>
                     </td>
                 </tr>
             </tbody>
@@ -46,7 +46,7 @@
                 </li>
                 <li th:each="i : ${#numbers.sequence(1, accounts.totalPages)}"
                     th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'">
-                    <a th:href="@{/senteapp/account/list(pageno=${i-1})}"
+                    <a th:href="@{/senteapp/account/list(pageNo=${i-1})}"
                        th:text="${i}" class = "page-link"></a>
                 </li>
             </ul>
