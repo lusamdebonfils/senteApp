@@ -9,6 +9,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!--    nav class="navbar navbar-expand-lg navbar-dark bg-primary-->
     <a class="navbar-brand" href="/">Wakanda Application</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -21,7 +22,7 @@
                 <a class="nav-link" href="#">Members<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Accounts</a>
+                <a class="nav-link" href="/senteapp/account/list">Accounts</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Loans</a>
@@ -37,6 +38,29 @@
 
     </div>
 </nav>
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-3">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Accounts
+                    <span class="badge badge-primary badge-pill">14</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Members
+                    <span class="badge badge-primary badge-pill">3</span>
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-9">
+            <th:block layout:fragment="content">
+
+            </th:block>
+        </div>
+
+
 <div class="container mt-4 row">
     <div class="col-3">
         <ul class="list-group">
@@ -55,10 +79,9 @@
         <th:block layout:fragment="content">
 
         </th:block>
+
     </div>
 
 </div>
-
-
 </body>
 </html>
