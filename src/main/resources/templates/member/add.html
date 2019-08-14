@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/masterlayout.html}">
+      layout:decorate="~{layouts/auth-masterlayout.html}">
 <head>
 
 </head>
@@ -26,7 +26,7 @@
                             <label for="memberNumber">Member Number</label>
                             <span th:if="${#fields.hasErrors('memberNumber')}" th:errors="*{memberNumber}"
                                   class="alert alert-danger"></span>
-                            <input id="memberNumber" name="memberNumber" type="number" class="form-control" placeholder="Member Number">
+                            <input id="memberNumber" name="memberNumber" type="number" class="form-control" placeholder="Member Number" required>
 
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <label for="contactNumber">Contact Number </label>
                             <input id="contactNumber" name="contactNumber" type="number" class="form-control"  aria-describedby="contactNumberHelp" placeholder="e.g +1 234 567 8910"
-                                   th:value="${member.getContactNumber()}">
+                                   th:value="${member.getContactNumber()}" required>
 
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                                 <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{lastName}"
                                       class="alert alert-danger"></span>
                                 <input id="firstName" name="firstName" type="text" class="form-control"  aria-describedby="firstNameHelp" placeholder="Firstname"
-                                       th:value="${member.firstName}">
+                                       th:value="${member.firstName}" required>
                             </div>
                         </div>
                     </div>
@@ -65,10 +65,35 @@
                         <div class="form-group">
                             <label for="lastName">Last Name </label>
                             <input id="lastName" name="lastName" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"
-                                   th:value="${member.lastName}">
+                                   th:value="${member.lastName}" required>
 
                         </div>
                     </div>
+
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="email">Email Address </label>-->
+<!--                            <input id="email" name="user.email" type="email" class="form-control"  aria-describedby="emailNameHelp" placeholder="Email Address Here"-->
+<!--                                   th:value="${user.email}" required>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="username">Username </label>-->
+<!--                            <input id="username" name="user.username" type="text" class="form-control"  aria-describedby="usernameHelp" placeholder="username"-->
+<!--                                   th:value="${user.username}" required>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="password">Password</label>-->
+<!--                            <input id="password" name="user.password" type="password" class="form-control"  aria-describedby="passwordHelp" placeholder="password"-->
+<!--                                   th:value="${user.password}" required>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <div class="col-md-12">
                         <h4>Add Member Address</h4>

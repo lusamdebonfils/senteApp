@@ -59,7 +59,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/senteapp/login?logout")
                 .permitAll()
                 .and()
-                .exceptionHandling();
+                .exceptionHandling()
+                .and()
+                .csrf().disable();
     }
 
 }

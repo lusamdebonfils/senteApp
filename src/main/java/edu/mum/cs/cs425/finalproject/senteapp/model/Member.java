@@ -25,12 +25,19 @@ public class Member {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateJoined;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Account account;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userId")
+    private User user;
+
 
     public Member() {
     }
 
-    public Member(Long memberId, Long memberNumber, String firstName, String middleName, String lastName, Address address, String contactNumber, Record record, LocalDate dateJoined) {
-        this.memberId = memberId;
+    public Member(Long memberNumber, String firstName, String middleName, String lastName, Address address, String contactNumber, Record record, LocalDate dateJoined, Account account) {
         this.memberNumber = memberNumber;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -39,6 +46,16 @@ public class Member {
         this.contactNumber = contactNumber;
         this.record = record;
         this.dateJoined = dateJoined;
+        this.account = account;
+        this.user = new User();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getMemberId() {
@@ -113,6 +130,14 @@ public class Member {
         this.dateJoined = dateJoined;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
@@ -122,8 +147,11 @@ public class Member {
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address=" + address +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", record=" + record +
                 ", dateJoined=" + dateJoined +
-                ", contactNumber='" + contactNumber +
+                ", account=" + account +
+                ", user=" + user +
                 '}';
     }
 }

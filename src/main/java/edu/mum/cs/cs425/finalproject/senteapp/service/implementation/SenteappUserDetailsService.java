@@ -19,13 +19,19 @@ public class SenteappUserDetailsService  implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Username " + username + " not found"));
+        //System.out.println(user.);
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 getAuthorities(user));
+
     }
 
     private static Collection<? extends GrantedAuthority> getAuthorities(User user) {
         String[] userRoles = user.getRoles().stream().map((role) -> role.getName()).toArray(String[]::new);
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);
         return authorities;
+    }
+
+    public User saveNewUser(User user){
+        return userRepository.save(user);
     }
 }
