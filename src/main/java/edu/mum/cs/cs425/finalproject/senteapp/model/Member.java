@@ -152,18 +152,6 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member{" +
-                "memberId=" + memberId +
-                ", memberNumber=" + memberNumber +
-                ", firstName='" + firstName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address=" + address +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", record=" + record +
-                ", dateJoined=" + dateJoined +
-                ", account=" + account +
-                ", user=" + user +
-                '}';
+        return memberNumber + " - " + firstName + " " + middleName + " " + lastName;
     }
 }

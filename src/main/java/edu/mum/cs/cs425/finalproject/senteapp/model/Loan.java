@@ -14,7 +14,7 @@ public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long loanId;
-    private Long loanNumber;
+    private String loanNumber;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Installment> installmentList;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -26,30 +26,31 @@ public class Loan {
     @Digits(integer = 9, fraction = 2, message = "* Balance must be a numeric/monetary amount in decimal (money) format such as 'x,xxx.xx'")
     @NumberFormat(pattern = "#,###.##")
     private Double loanAmount;
-    private Double interestRate;
+    private static final Double interestRate = 0.15;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "firstSeconder")
     private Member firstSeconder;
-   // @OneToOne(cascade = CascadeType.ALL)
-  // @JoinColumn(name = "firstSeconder")
-  //  private Member firstSeconder;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "secondSeconder")
     private Member secondSeconder;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Member applicant;
+
 
     public Loan() {
     }
 
-    public Loan(Long loanNumber, List<Installment> installmentList, LocalDate applicationDate, LocalDate dateOfIssue, LocalDate dueDate, @Digits(integer = 9, fraction = 2, message = "* Balance must be a numeric/monetary amount in decimal (money) format such as 'x,xxx.xx'") Double loanAmount, Double interestRate, Member firstSeconder, Member secondSeconder) {
+    public Loan(String loanNumber, List<Installment> installmentList, LocalDate applicationDate, LocalDate dateOfIssue, LocalDate dueDate, @Digits(integer = 9, fraction = 2, message = "* Balance must be a numeric/monetary amount in decimal (money) format such as 'x,xxx.xx'") Double loanAmount,  Member firstSeconder, Member secondSeconder,Member applicant) {
         this.loanNumber = loanNumber;
         this.installmentList = installmentList;
         this.applicationDate = applicationDate;
         this.dateOfIssue = dateOfIssue;
         this.dueDate = dueDate;
         this.loanAmount = loanAmount;
-        this.interestRate = interestRate;
         this.firstSeconder = firstSeconder;
         this.secondSeconder = secondSeconder;
+        this.applicant=applicant;
+
     }
 
     public Long getLoanId() {
@@ -60,11 +61,11 @@ public class Loan {
         this.loanId = loanId;
     }
 
-    public Long getLoanNumber() {
+    public String getLoanNumber() {
         return loanNumber;
     }
 
-    public void setLoanNumber(Long loanNumber) {
+    public void setLoanNumber(String loanNumber) {
         this.loanNumber = loanNumber;
     }
 
@@ -104,10 +105,6 @@ public class Loan {
         return interestRate;
     }
 
-    public void setInterestRate(Double interestRate) {
-        this.interestRate = interestRate;
-    }
-
     public Member getFirstSeconder() {
         return firstSeconder;
     }
@@ -130,6 +127,14 @@ public class Loan {
 
     public void setApplicationDate(LocalDate applicationDate) {
         this.applicationDate = applicationDate;
+    }
+
+    public Member getApplicant() {
+        return applicant;
+    }
+
+    public void setApplicant(Member applicant) {
+        this.applicant = applicant;
     }
 
     @Override

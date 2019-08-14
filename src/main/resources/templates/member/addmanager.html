@@ -77,7 +77,7 @@
                                   class="alert alert-danger"></span>
                             <select class="form-control"  id="account" name="account">
                                 <option value="0">Select Account Name</option>
-                                <option th:each="acct : ${accounts}" th:value="${acct.accountId}" th:text="${acct.accountName}"></option>
+                                <option th:each="acct : ${accounts}" th:value="${acct.accountId}" th:text="${acct.accountName}" required></option>
                             </select>
                         </div>
                     </div>

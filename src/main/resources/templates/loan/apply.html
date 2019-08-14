@@ -30,7 +30,7 @@
                             <select class="form-control"  id="firstSeconder" name="firstSeconder">
                                 <option value="0">Select first surety</option>
                                 <option th:each="member : ${members}" th:value="${member.memberId}" th:text="${member.memberNumber} +' - '+${member.firstName}
-                                             +' '+${member.middleName} +' '+${member.lastName}  "></option>
+                                             +' '+${member.middleName} +' '+${member.lastName} " th:required="required"></option>
                             </select>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                             <select class="form-control"  id="secondSeconder" name="secondSeconder">
                                 <option value="0">Select second surety</option>
                                 <option th:each="member : ${members}" th:value="${member.memberId}" th:text="${member.memberNumber} +' - '+${member.firstName}
-                                             +' '+${member.middleName} +' '+${member.lastName}  "></option>
+                                             +' '+${member.middleName} +' '+${member.lastName}"></option>
                             </select>
                         </div>
                     </div>
