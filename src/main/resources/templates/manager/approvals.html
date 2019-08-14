@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/auth-masterlayout.html}">
+<head>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="container mt-3 mb-3">
+        <h2 class="mb-5">
+            List of Approvals
+        </h2>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Applicant</th>
+                <th scope="col">Amount</th>
+                <th scope="col">First Seconder</th>
+                <th scope="col">Second Seconder</th>
+                <th scope="col">Application Date</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="approval, iterStat : ${approvals}">
+                <th scope="row" th:text="${iterStat.count}"></th>
+                <td th:text="${approval.loan.applicant}"></td>
+                <td th:text="${approval.loan.loanAmount}"></td>
+                <td th:text="${approval.loan.firstSeconder}"></td>
+                <td th:text="${approval.loan.secondSeconder}"></td>
+                <td th:text="${approval.loan.applicationDate}"></td>
+                <td><a class="btn btn-outline-warning" >Approve</a></td>
+                <td><a class="btn btn-outline-warning" >Reject</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</th:block>
+</body>
+</html>

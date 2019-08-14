@@ -1,5 +1,6 @@
 package edu.mum.cs.cs425.finalproject.senteapp.service.implementation;
 
+import edu.mum.cs.cs425.finalproject.senteapp.model.Account;
 import edu.mum.cs.cs425.finalproject.senteapp.model.Member;
 import edu.mum.cs.cs425.finalproject.senteapp.repository.MemberRepository;
 
@@ -43,7 +44,7 @@ public class MemberServiceImplementation implements MemberService {
 
     @Override
     public Double calculateMemberAccountBalance(Long memberId) {
-        return null;
+        return 0.0;
 
     }
 
@@ -51,5 +52,24 @@ public class MemberServiceImplementation implements MemberService {
     public Page<Member> searchMembers(String search, Integer pageNo) {
         return memberRepository.findAllByLastNameContainsOrFirstNameContainsOrMiddleNameContains(search, search, search, PageRequest.of(pageNo, 2,Sort.by("firstName")));
 
+    }
+
+    @Override
+    public Page<Member> getAllMembersPerAccount(Account acct, int pageNo) {
+        return memberRepository.findMembersByAccount(acct, PageRequest.of(pageNo, 3,Sort.by("firstName")));
+    }
+
+    @Override
+    public List<Member> getAllByAccountID(Long accounID) {
+        return memberRepository.getAllByAccount_AccountId(accounID);
+    }
+
+    public List<Member> getMembersByAccount(Account account) {
+        return memberRepository.findByAccountEquals(account);
+    }
+
+    @Override
+    public Member getMemberByEmail(String email) {
+        return memberRepository.findByEmailEquals(email);
     }
 }

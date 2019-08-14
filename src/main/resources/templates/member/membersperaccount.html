@@ -10,12 +10,11 @@
 
 <th:block layout:fragment="content">
 
-
-
     <div class="container mt-3">
-
-        <h2 class="mb-4 mb-3">Active Account Members
-            <a href="/senteapp/member/addmanager" class="btn btn-outline-primary btn-lg float-right">Create Account Manager</a>
+        <h2 class="mb-4 mb-3">
+            Members for
+            <span th:text="${accountName}"></span>
+            <a href="/senteapp/member/add" class="btn btn-outline-primary btn-lg float-right">Add New Member</a>
         </h2>
         <div style="float: left;margin-bottom: 20px">
             <form class="form-inline my-2 my-lg-0">
@@ -32,11 +31,11 @@
                     <th scope="col">#</th>
                     <th scope="col">Member Number</th>
                     <th scope="col">First Name</th>
-                    <th scope="col">M</th>
+                    <th scope="col">MiddleName</th>
                     <th scope="col"> LastName </th>
                     <th scope="col">Contact </th>
 <!--                    <th scope="col"> Address </th>-->
-                    <th scope="col">Acount Name</th>
+                    <th scope="col">&nbsp;</th>
 
                     <th scope="col">Actions</th>
                     <th scope="col">&nbsp;</th>
@@ -53,32 +52,28 @@
                     <td th:text="${member.contactNumber}"></td>
 <!--                    <td th:text="${member.address}"></td>-->
                     <td th:text="${member.account.accountName}"></td>
-<!--                    <td th:text="${member.account.accountId}"></td>-->
-                    <td><a th:href="@{'/senteapp/account/memmberList/view{accountId}'(accountId=${member.account.accountId})}" class="btn btn-outline-info">Records</a></td>
-                    <td><a class="btn btn-outline-warning" th:href="@{'/senteapp/member/edit{memberId}'(memberId=${member.memberId})}">Edit</a></td>
-                    <td><a class="btn btn-outline-primary" href="#">Deactivate</a></td>
+                    <td><a class="btn btn-outline-info btn-small" href="#">Records</a></td>
+                    <td><a class="btn btn-outline-warning btn-small" th:href="@{'/senteapp/member/edit{memberId}'(memberId=${member.memberId})}">Edit</a></td>
+                    <td><a class="btn btn-outline-primary btn-small" href="#">Deactivate</a></td>
 
 
                 </tr>
                 </tbody>
             </table>
-            <div class="d-flex justify-content-center">
-                <ul class="pagination pagination-lg">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">Pages: </a>
-                    </li>
-                    <li th:each="i : ${#numbers.sequence(1, members.totalPages)} "
-                        th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'" th:if="${i} >= 1" >
-                        <a th:href="@{/senteapp/member/list(pageNo=${i-1})}" th:text="${i}" class = "page-link"></a>
-                    </li>
-                </ul>
-            </div>
+<!--            <div class="d-flex justify-content-center">-->
+<!--                <ul class="pagination pagination-lg">-->
+<!--                    <li class="page-item disabled">-->
+<!--                        <a class="page-link" href="#">Pages: </a>-->
+<!--                    </li>-->
+<!--                    <li th:each="i : ${#numbers.sequence(1, members.totalPages)} "-->
+<!--                        th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'" th:if="${i} >= 1" >-->
+<!--                        <a th:href="@{/senteapp/member/list(pageNo=${i-1})}" th:text="${i}" class = "page-link"></a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
         </div>
 
     </div>
-
-
-
 
 </th:block>
 </body>

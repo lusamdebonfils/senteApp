@@ -11,5 +11,6 @@ public interface RecordService {
     public List<Record> getAllRecordsList();
     public Record getAllRecordsListByMemberID(Long memberID);
     public Record createRecord(Record record);
+
     
 }

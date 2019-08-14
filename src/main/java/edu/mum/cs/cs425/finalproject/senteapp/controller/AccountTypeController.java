@@ -21,6 +21,7 @@ public class AccountTypeController {
     public ModelAndView dispalyAccountTypes(@RequestParam(defaultValue = "0") Integer pageNo){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("accounttypes", accountTypeService.getAllAccountTypes(pageNo));
+        modelAndView.addObject("accounttypesCount", accountTypeService.getAllAccountTypesList().size());
         modelAndView.addObject("currentPageNo", pageNo);
         modelAndView.setViewName("accounttype/list");
         return modelAndView;

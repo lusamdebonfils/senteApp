@@ -24,6 +24,7 @@ public class AccountController {
     public ModelAndView displayAccounts(@RequestParam(defaultValue = "0") Integer pageNo){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("accounts", accountService.getAllAccounts(pageNo));
+        modelAndView.addObject("accountsCount", accountService.getAllAccountsList().size());
         modelAndView.addObject("currentPageNo", pageNo);
         modelAndView.setViewName("account/list");
         return modelAndView;

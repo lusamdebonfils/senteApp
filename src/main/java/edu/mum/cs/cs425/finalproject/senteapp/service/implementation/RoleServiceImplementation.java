@@ -23,4 +23,5 @@ public class RoleServiceImplementation implements RoleService {
     public Role getRoleById(int Id) {
         return roleRepository.findById(Id).orElse(null);
     }
+
 }
