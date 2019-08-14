@@ -4,9 +4,13 @@ package edu.mum.cs.cs425.finalproject.senteapp.controller;
 import edu.mum.cs.cs425.finalproject.senteapp.model.Account;
 import edu.mum.cs.cs425.finalproject.senteapp.model.Address;
 import edu.mum.cs.cs425.finalproject.senteapp.model.Member;
+import edu.mum.cs.cs425.finalproject.senteapp.model.User;
 import edu.mum.cs.cs425.finalproject.senteapp.service.AccountTypeService;
 import edu.mum.cs.cs425.finalproject.senteapp.service.AddressService;
 import edu.mum.cs.cs425.finalproject.senteapp.service.MemberService;
+import edu.mum.cs.cs425.finalproject.senteapp.service.implementation.SenteappUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,10 +24,13 @@ public class MemberController {
 
     private MemberService memberService;
     private AddressService addressService;
+    @Autowired
+    private SenteappUserDetailsService userService;
 
     public MemberController(MemberService memberService, AddressService addressService){
         this.memberService = memberService;
         this.addressService = addressService;
+
     }
 
 
@@ -43,14 +50,16 @@ public class MemberController {
     public String addNewMemberForm(Model model){
         model.addAttribute("address", new Address());
         model.addAttribute("member", new Member());
+        model.addAttribute("user", new User());
         return "member/add";
     }
     @PostMapping(value = "/senteapp/member/add")
     public String createNewMember(@Valid @ModelAttribute("member") Member member, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
+        if(bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "member/add";
         }
+        System.out.println(member);
         member = memberService.saveMember(member);
         return"redirect:/senteapp/member/list";
     }
@@ -77,6 +86,8 @@ public class MemberController {
         memberService.saveMember(member);
         return "redirect:/senteapp/member/list";
     }
+
+    //public
 
 
 }

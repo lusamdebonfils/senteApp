@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "accounts")
@@ -31,14 +32,26 @@ public class Account {
     @NotNull(message = "Account type required")
     private AccountType accountType;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Member accountManager;
+
     public Account() {
     }
 
-    public Account(String accountNumber, String accountName, LocalDate dateCreated, AccountType accountType) {
+    public Account(String accountNumber, String accountName, LocalDate dateCreated, @NotNull(message = "Account type required") AccountType accountType, Member accountManager) {
         this.accountNumber = accountNumber;
         this.accountName = accountName;
         this.dateCreated = dateCreated;
         this.accountType = accountType;
+        this.accountManager = accountManager;
+    }
+
+    public Member getAccountManager() {
+        return accountManager;
+    }
+
+    public void setAccountManager(Member accountManager) {
+        this.accountManager = accountManager;
     }
 
     public Long getAccountId() {
