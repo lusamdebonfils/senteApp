@@ -44,7 +44,7 @@ public class MemberServiceImplementation implements MemberService {
 
     @Override
     public Double calculateMemberAccountBalance(Long memberId) {
-        return null;
+        return 0.0;
 
     }
 
@@ -64,5 +64,12 @@ public class MemberServiceImplementation implements MemberService {
         return memberRepository.getAllByAccount_AccountId(accounID);
     }
 
+    public List<Member> getMembersByAccount(Account account) {
+        return memberRepository.findByAccountEquals(account);
+    }
 
+    @Override
+    public Member getMemberByEmail(String email) {
+        return memberRepository.findByEmailEquals(email);
+    }
 }
