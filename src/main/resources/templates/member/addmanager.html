@@ -7,7 +7,7 @@
 <body>
 <th:block layout:fragment="content">
     <div >
-        <h4>Add New Member</h4>
+        <h4>Add Account Manager</h4>
 
         <p>
             Please Fill the required Fields.
@@ -17,7 +17,7 @@
 
     <div style="padding-top:1em;" class="container">
 
-        <form id="newMemberForm" method="post" action="/senteapp/member/add" th:object="${member}">
+        <form id="newMemberForm" method="post" action="/senteapp/member/addmanager" th:object="${member}">
             <fieldset>
 
                 <div class="row" style="margin-top: 10px">
@@ -67,6 +67,18 @@
                             <input id="lastName" name="lastName" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Lastname"
                                    th:value="${member.lastName}" required>
 
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="account">Account Name</label>
+                            <span th:if="${#fields.hasErrors('account')}" th:errors="*{account}"
+                                  class="alert alert-danger"></span>
+                            <select class="form-control"  id="account" name="account">
+                                <option value="0">Select Account Name</option>
+                                <option th:each="acct : ${accounts}" th:value="${acct.accountId}" th:text="${acct.accountName}"></option>
+                            </select>
                         </div>
                     </div>
 

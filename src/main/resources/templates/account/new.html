@@ -13,7 +13,7 @@
             <fieldset>
                 <input type="hidden" name="accountId" th:value="${account.accountId}"/>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="accountNumber">Account Number</label>
                             <span th:if="${#fields.hasErrors('accountNumber')}" th:errors="*{accountNumber}"
@@ -22,7 +22,7 @@
                                    placeholder="Account Number" required>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="accountName">Account Name</label>
                             <span th:if="${#fields.hasErrors('accountName')}" th:errors="*{accountName}"
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="dateCreated">Date Created</label>
                             <span th:if="${#fields.hasErrors('dateCreated')}" th:errors="*{dateCreated}"
@@ -44,7 +44,7 @@
                         </div>
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="accountType">Account Type</label>
                             <span th:if="${#fields.hasErrors('accountType')}" th:errors="*{accountType}"
@@ -57,9 +57,14 @@
                     </div>
 
                 </div>
-                <div style="float:right; width: 90%">
-                    <a href="/senteapp" class="btn btn-outline-warning" style="float: left">Cancel</a>&nbsp;&nbsp;&nbsp;
-                    <button id="btnSubmit" type="submit" class="btn btn-outline-success">Create Account</button>
+                <div class="row">
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-4">
+                        <a href="/senteapp/account/list" class="btn btn-outline-warning" style="float: left">Cancel</a>&nbsp;&nbsp;&nbsp;
+                        <button id="btnSubmit" type="submit" class="btn btn-outline-success">Create Account</button>
+                    </div>
                 </div>
             </fieldset>
         </form>

@@ -3,6 +3,7 @@ package edu.mum.cs.cs425.finalproject.senteapp.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
@@ -33,11 +34,13 @@ public class Member {
     @JoinColumn(name = "userId")
     private User user;
 
+    private String email;
+
 
     public Member() {
     }
 
-    public Member(Long memberNumber, String firstName, String middleName, String lastName, Address address, String contactNumber, Record record, LocalDate dateJoined, Account account) {
+    public Member(Long memberNumber, String firstName, String middleName, String lastName, Address address, String contactNumber, Record record, LocalDate dateJoined, Account account, String email) {
         this.memberNumber = memberNumber;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -47,7 +50,16 @@ public class Member {
         this.record = record;
         this.dateJoined = dateJoined;
         this.account = account;
+        this.email = email;
         this.user = new User();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public User getUser() {
