@@ -17,13 +17,11 @@
 
     </nav>
 
-    <div class="container">
-        <h3>Sign In</h3>
-        <hr/>
-        <div class="container">
+    <div class="container mt-3 mb-3">
+        <div class="d-flex justify-content-center">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card border-secondary mb-4" style="max-width: 60rem;">
+                    <div class="card border-secondary mb-4">
                         <div class="card-header">Use your Senteapp Account</div>
                         <div class="card-body">
                             <h4 class="card-title">Sign In with your Senteapp Account</h4>
@@ -44,13 +42,13 @@
                                         <label for="txtUsername">Username</label>
                                         <!-- <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
                                               class="alert alert-danger"></span> -->
-                                        <input id="txtUsername" name="username" type="text" class="form-control" autofocus="autofocus"/>
+                                        <input id="txtUsername" name="username" type="text" class="form-control" autofocus="autofocus" required/>
                                     </div>
                                     <div class="form-group">
                                         <label for="txtPassword">Password</label>
                                         <!-- <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                                               class="alert alert-danger"></span> -->
-                                        <input id="txtPassword" name="password" type="password" class="form-control"/>
+                                        <input id="txtPassword" name="password" type="password" class="form-control" required/>
                                     </div>
                                     <div style="float:right;">
                                         <a href="/senteapp" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
