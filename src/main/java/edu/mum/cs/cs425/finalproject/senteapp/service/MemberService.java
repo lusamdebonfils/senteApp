@@ -1,5 +1,6 @@
 package edu.mum.cs.cs425.finalproject.senteapp.service;
 
+import edu.mum.cs.cs425.finalproject.senteapp.model.Account;
 import edu.mum.cs.cs425.finalproject.senteapp.model.Member;
 import org.springframework.data.domain.Page;
 
@@ -12,5 +13,9 @@ public interface MemberService {
         public abstract Member getMemberById(Long memberId);
         public abstract Double calculateMemberAccountBalance(Long memberId);
         public abstract Page<Member> searchMembers(String search, Integer pageNo);
+
+
+        public abstract List<Member> getMembersByAccount(Account account);
+        public Member getMemberByEmail(String email);
 
 }
