@@ -19,22 +19,26 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item">
+            <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
                 <a class="nav-link" href="/senteapp/member/list">Members<span class="sr-only">(current)</span></a>
             </li>
             <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
                 <a class="nav-link" href="/senteapp/account/list">Accounts</a>
             </li>
-            <li class="nav-item">
+
+            <li sec:authorize="hasRole('ROLE_MANAGER')" class="nav-item">
+                <a class="nav-link" href="/senteapp/account/list">Members</a>
+            </li>
+            <li sec:authorize="hasRole('ROLE_MANAGER')" class="nav-item">
                 <a class="nav-link" href="#">Loans</a>
             </li>
-            <li class="nav-item">
+            <li sec:authorize="hasRole('ROLE_MEMBER')" class="nav-item">
                 <a class="nav-link" href="/senteapp/loan/apply">Apply for Loan</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Savings</a>
             </li>
-            <li class="nav-item">
+            <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
                 <a class="nav-link" href="/senteapp/accounttype/list">Account Types</a>
             </li>
 

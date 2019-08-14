@@ -6,7 +6,6 @@
 </head>
 <body>
 <th:block layout:fragment="content">
-    <h1>Edit account type form</h1><p></p>
     <span style="font-size: 2em; color: #32a5e7;">Edit Account type : [[${accountType.accountTypeName}]]</span>
     <div>
         <form name="editaccounttype" id="editaccounttype" method="post" action="/senteapp/accounttype/edit" th:object="${accountType}">

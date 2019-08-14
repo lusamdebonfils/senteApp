@@ -1,5 +1,6 @@
 package edu.mum.cs.cs425.finalproject.senteapp.service.implementation;
 
+import edu.mum.cs.cs425.finalproject.senteapp.model.Account;
 import edu.mum.cs.cs425.finalproject.senteapp.model.Member;
 import edu.mum.cs.cs425.finalproject.senteapp.repository.MemberRepository;
 
@@ -52,4 +53,16 @@ public class MemberServiceImplementation implements MemberService {
         return memberRepository.findAllByLastNameContainsOrFirstNameContainsOrMiddleNameContains(search, search, search, PageRequest.of(pageNo, 2,Sort.by("firstName")));
 
     }
+
+    @Override
+    public Page<Member> getAllMembersPerAccount(Account acct, int pageNo) {
+        return memberRepository.findMembersByAccount(acct, PageRequest.of(pageNo, 3,Sort.by("firstName")));
+    }
+
+    @Override
+    public List<Member> getAllByAccountID(Long accounID) {
+        return memberRepository.getAllByAccount_AccountId(accounID);
+    }
+
+
 }

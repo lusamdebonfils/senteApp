@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +39,33 @@ public class MemberController {
     @GetMapping(value = "senteapp/member/list")
     public String getAllMembers(@RequestParam(defaultValue = "0") Integer pageNo, Model model){
         model.addAttribute("members", memberService.getAllMembers(pageNo));
+        model.addAttribute("allMemberCount", memberService.getAllMembers().size());
         model.addAttribute("currentPageNo", pageNo);
         return "member/list";
     }
+    @GetMapping(value = "senteapp/member/membersperaccount")
+    public String getAllMembersAccManager(@RequestParam(defaultValue = "0") Integer pageNo, Model model,Principal principal){
+        String currentUser = principal.getName();
+        //Member member = memberService
+        model.addAttribute("members", memberService.getAllMembers(pageNo));
+        model.addAttribute("allMemberCount", memberService.getAllMembers().size());
+        model.addAttribute("currentPageNo", pageNo);
+        return "member/membersperaccount";
+    }
+
+    @GetMapping(value = "/senteapp/account/memmberList/view{accountId}")
+    public String getAllMembersPerAccount(@RequestParam(defaultValue = "0") Integer pageNo, Model model, Principal principal, @PathVariable Long accountId){
+        //Member manager = memberService.
+        Account account = accountService.getAccountById(accountId);
+        System.out.println("Bishesshshshshhsh ::::: "+account);
+        model.addAttribute("members", memberService.getAllByAccountID(accountId));
+        model.addAttribute("allMemberCountAccount", memberService.getAllByAccountID(accountId).size());
+        model.addAttribute("accountName", account.getAccountName());
+        //model.addAttribute("members", memberService.getAllMembersPerAccount(account,pageNo));
+        //model.addAttribute("currentPageNo", pageNo);
+        return "member/membersperaccount";
+    }
+
     @GetMapping(value = {"/senteapp/member/search"})
     public String searchMember(@RequestParam("search") String search,@RequestParam(defaultValue = "0") Integer pageNo, Model model) {
         model.addAttribute("members", memberService.searchMembers(search,pageNo));

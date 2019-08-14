@@ -32,6 +32,7 @@ public class AccountTypeServiceImplementation implements AccountTypeService {
         return accountTypeRepository.findById(accountTypeId).orElse(null);
     }
 
+
     @Override
     public List<AccountType> getAllAccountTypesList() {
         return accountTypeRepository.findAll();

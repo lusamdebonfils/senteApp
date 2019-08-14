@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/auth-masterlayout.html}">
+<head>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="container mt-3 mb-3">
+        <h2 class="mb-5">
+            List of Memembers
+            <a href="/senteapp/account/new" class="btn btn-outline-primary btn-lg float-right">Add member account</a>
+        </h2>
+
+
+
+<!--        <div class="d-flex justify-content-center">-->
+<!--            <ul class="pagination pagination-lg">-->
+<!--                <li class="page-item disabled">-->
+<!--                    <a class="page-link" href="#">Pages: </a>-->
+<!--                </li>-->
+<!--                <li th:each="i : ${#numbers.sequence(1, accounts.totalPages)}"-->
+<!--                    th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'" th:if="${i} >= 1" >-->
+<!--                    <a th:href="@{/senteapp/account/list(pageNo=${i-1})}"-->
+<!--                       th:text="${i}" class = "page-link"></a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+    </div>
+</th:block>
+</body>
+</html>
