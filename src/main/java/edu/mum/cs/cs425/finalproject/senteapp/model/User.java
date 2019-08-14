@@ -1,5 +1,6 @@
 package edu.mum.cs.cs425.finalproject.senteapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ import javax.validation.constraints.Size;
 @Table(name="users")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable=false, unique=true)

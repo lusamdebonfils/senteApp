@@ -37,7 +37,7 @@ public class Member {
     public Member() {
     }
 
-    public Member(Long memberNumber, String firstName, String middleName, String lastName, Address address, String contactNumber, Record record, LocalDate dateJoined, Account account, User user) {
+    public Member(Long memberNumber, String firstName, String middleName, String lastName, Address address, String contactNumber, Record record, LocalDate dateJoined, Account account) {
         this.memberNumber = memberNumber;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -47,7 +47,7 @@ public class Member {
         this.record = record;
         this.dateJoined = dateJoined;
         this.account = account;
-        this.user = user;
+        this.user = new User();
     }
 
     public User getUser() {
@@ -147,8 +147,11 @@ public class Member {
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address=" + address +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", record=" + record +
                 ", dateJoined=" + dateJoined +
-                ", contactNumber='" + contactNumber +
+                ", account=" + account +
+                ", user=" + user +
                 '}';
     }
 }
