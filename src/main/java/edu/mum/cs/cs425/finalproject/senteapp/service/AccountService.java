@@ -11,5 +11,6 @@ public interface AccountService {
     public Account saveAccount(Account account);
     public List<Account> getAllAccountsList();
     public Account getAccountById(Long accountId);
+    public Account getAccountByEmail(String email);
 
 }

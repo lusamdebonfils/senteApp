@@ -13,6 +13,10 @@ public interface MemberService {
         public abstract Member getMemberById(Long memberId);
         public abstract Double calculateMemberAccountBalance(Long memberId);
         public abstract Page<Member> searchMembers(String search, Integer pageNo);
+        public abstract Page<Member> getAllMembersPerAccount(Account acct, int pageNo);
+        public abstract List<Member> getAllByAccountID(Long accounID);
+
+
 
 
         public abstract List<Member> getMembersByAccount(Account account);

@@ -55,6 +55,15 @@ public class MemberServiceImplementation implements MemberService {
     }
 
     @Override
+    public Page<Member> getAllMembersPerAccount(Account acct, int pageNo) {
+        return memberRepository.findMembersByAccount(acct, PageRequest.of(pageNo, 3,Sort.by("firstName")));
+    }
+
+    @Override
+    public List<Member> getAllByAccountID(Long accounID) {
+        return memberRepository.getAllByAccount_AccountId(accounID);
+    }
+
     public List<Member> getMembersByAccount(Account account) {
         return memberRepository.findByAccountEquals(account);
     }
