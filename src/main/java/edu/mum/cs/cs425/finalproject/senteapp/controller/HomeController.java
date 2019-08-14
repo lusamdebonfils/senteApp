@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping(value = {"/", "/senteapp"})
-    public String displayHome(){
-        return "index";
-    }
+//    @GetMapping(value = {"/", "/senteapp"})
+//    public String displayHome(){
+//        return "index";
+//    }
 
-    @GetMapping(value = {"/senteapp/home"})
+    @GetMapping(value = {"/senteapp/home","/", "/senteapp"})
     public String displayAuthHome(){
         return "home/index";
     }
