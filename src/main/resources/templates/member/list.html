@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       layout:decorate="~{layouts/auth-masterlayout.html}">
 <head>
 </head>
@@ -10,12 +11,10 @@
 
 <th:block layout:fragment="content">
 
-
-
     <div class="container mt-3">
 
         <h2 class="mb-4 mb-3">Active Account Members
-            <a href="/senteapp/member/addmanager" class="btn btn-outline-primary btn-lg float-right">Create Account Manager</a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" href="/senteapp/member/addmanager" class="btn btn-outline-primary btn-lg float-right">Create Account Manager</a>
         </h2>
         <div style="float: left;margin-bottom: 20px">
             <form class="form-inline my-2 my-lg-0">
@@ -54,9 +53,9 @@
 <!--                    <td th:text="${member.address}"></td>-->
                     <td th:text="${member.account.accountName}"></td>
 <!--                    <td th:text="${member.account.accountId}"></td>-->
-                    <td><a th:href="@{'/senteapp/account/memmberList/view{accountId}'(accountId=${member.account.accountId})}" class="btn btn-outline-info">Records</a></td>
-                    <td><a class="btn btn-outline-warning" th:href="@{'/senteapp/member/edit{memberId}'(memberId=${member.memberId})}">Edit</a></td>
-                    <td><a class="btn btn-outline-primary" href="#">Deactivate</a></td>
+                    <td><a th:href="@{'/senteapp/member/show{memberId}'(memberId=${member.memberId})}" class="btn btn-sm btn-outline-info">Records</a></td>
+                    <td><a class="btn btn-sm btn-outline-warning" th:href="@{'/senteapp/member/edit{memberId}'(memberId=${member.memberId})}">Edit</a></td>
+                    <td><a class="btn btn-sm btn-outline-primary" href="#">Deactivate</a></td>
 
 
                 </tr>
@@ -76,9 +75,6 @@
         </div>
 
     </div>
-
-
-
 
 </th:block>
 </body>

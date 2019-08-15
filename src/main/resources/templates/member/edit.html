@@ -11,13 +11,15 @@
         </h2>
         <form name="editMemberform" id="editMemberform" method="post" action="/senteapp/member/edit" th:object="${member}">
             <fieldset>
+                <input type="hidden" name="memberId" th:value="${member.memberId}"/>
                 <div class="row" style="margin-top: 10px">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="memberNumber">Member Number</label>
                             <span th:if="${#fields.hasErrors('memberNumber')}" th:errors="*{memberNumber}"
                                   class="alert alert-danger"></span>
-                            <input id="memberNumber" name="memberNumber" type="number" class="form-control" placeholder="Member Number">
+                            <input id="memberNumber" name="memberNumber" type="number" class="form-control" placeholder="Member Number"
+                                   th:value="${member.memberNumber}"/>
 
                         </div>
                     </div>

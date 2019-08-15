@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       layout:decorate="~{layouts/auth-masterlayout.html}">
 <head>
 </head>
@@ -8,7 +9,7 @@
     <div class="container mt-3 mb-3">
         <h2 class="mb-5">
             List of Account Types
-            <a href="/senteapp/accounttype/add" class="btn btn-outline-primary btn-lg float-right">Create new account type</a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" href="/senteapp/accounttype/add" class="btn btn-outline-primary btn-lg float-right">Create new account type</a>
         </h2>
 
         <table class="table table-striped">
@@ -26,7 +27,7 @@
                 <th scope="row" th:text="${iterStat.count}"></th>
                 <td th:text="${accountType.accountTypeNumber}"></td>
                 <td th:text="${accountType.accountTypeName}"></td>
-                <td><a class="btn btn-outline-warning" th:href="@{'/senteapp/accounttype/edit{accountTypeId}'(accountTypeId=${accountType.accountTypeId})}">Edit</a></td>
+                <td><a class="btn btn-sm btn-outline-warning" th:href="@{'/senteapp/accounttype/edit{accountTypeId}'(accountTypeId=${accountType.accountTypeId})}">Edit</a></td>
             </tr>
             </tbody>
         </table>
