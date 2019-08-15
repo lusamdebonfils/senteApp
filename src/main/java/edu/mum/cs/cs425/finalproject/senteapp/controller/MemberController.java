@@ -53,6 +53,10 @@ public class MemberController {
         String email = principal.getName();
         Member member = memberService.getMemberByEmail(email);
         Account account = member.getAccount();
+        if (account.equals(null)){
+            System.out.println("You got Fucked");
+        }
+        System.out.println("Account causing issuess :"+account);
         //Member member = memberService
         model.addAttribute("members", memberService.getMembersByAccount(account));
         model.addAttribute("allMemberCount", memberService.getAllMembers().size());
@@ -127,7 +131,7 @@ public class MemberController {
         return "member/add";
     }
     @PostMapping(value = "/senteapp/member/add")
-    public String createNewMember(@Valid @ModelAttribute("member") Member member, BindingResult bindingResult, Model model){
+    public String createNewMember(@Valid @ModelAttribute("member") Member member, BindingResult bindingResult, Model model,Principal principal){
         if(bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "member/add";
@@ -144,11 +148,17 @@ public class MemberController {
         member.setEmail(userName);
         member.setDateJoined(LocalDate.now());
 
+        //setting account
+        String email = principal.getName();
+        Member accountManager = memberService.getMemberByEmail(email);
+        Account account = accountManager.getAccount();
+
+        member.setAccount(account);
+
         System.out.println("\n\n\nuser details check : "+member.getUser());
         System.out.println("\n\n\nmember details check : "+member);
 
         Member memberN = memberService.saveMember(member);
-        System.out.println("\n\n\nmember details check : "+memberN);
         return "redirect:/senteapp/member/list";
     }
 
@@ -160,7 +170,7 @@ public class MemberController {
             model.addAttribute("member", member);
             return "member/edit";
         }
-        return "member/list";
+        return "redirect:/senteapp/member/membersperaccount";
     }
 
     @PostMapping(value = {"/senteapp/member/edit"})
@@ -171,7 +181,7 @@ public class MemberController {
             return "member/edit";
         }
         memberService.saveMember(member);
-        return "redirect:/senteapp/member/list";
+        return "redirect:/senteapp/member/membersperaccount";
     }
 
     //public

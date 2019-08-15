@@ -29,7 +29,9 @@ public class ApprovalController {
         String email = principal.getName();
         Member member = memberService.getMemberByEmail(email);
         Account account = accountService.getAccountById(member.getMemberId());
-        model.addAttribute("approvals", approvalService.getAllApprovals(account));
+        model.addAttribute("approvals", approvalService.getAllApprovalsById(account.getAccountId()));
+        System.out.println(member);
+        System.out.println( approvalService.getAllApprovals(account));
         return "manager/approvals";
     }
 }

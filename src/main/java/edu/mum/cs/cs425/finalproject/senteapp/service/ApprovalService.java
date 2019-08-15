@@ -9,4 +9,5 @@ import java.util.List;
 public interface ApprovalService {
     public Approval saveApproval(Approval approval);
     public List<Approval> getAllApprovals(Account account);
+    public List<Approval> getAllApprovalsById(Long Id);
 }

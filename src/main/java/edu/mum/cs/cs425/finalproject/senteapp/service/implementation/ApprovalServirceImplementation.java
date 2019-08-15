@@ -26,5 +26,10 @@ public class ApprovalServirceImplementation implements ApprovalService {
         return  approvalRepository.getAllByAccountEquals(account);
     }
 
+    @Override
+    public List<Approval> getAllApprovalsById(Long Id) {
+        return approvalRepository.findByAccountAccountId(Id);
+    }
+
 
 }

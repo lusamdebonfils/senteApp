@@ -11,5 +11,6 @@ import java.util.List;
 @Repository
 public interface ApprovalRepository extends JpaRepository<Approval, Long> {
     public List<Approval> getAllByAccountEquals(Account account);
+    public List<Approval> findByAccountAccountId(Long accountId);
 
 }

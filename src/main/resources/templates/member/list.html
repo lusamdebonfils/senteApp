@@ -51,12 +51,11 @@
                     <td th:text="${member.lastName}"></td>
                     <td th:text="${member.contactNumber}"></td>
 <!--                    <td th:text="${member.address}"></td>-->
-                    <td th:text="${member.account.accountName}"></td>
+<!--                    <td th:text="${member.account.accountName}"></td>-->
 <!--                    <td th:text="${member.account.accountId}"></td>-->
                     <td><a th:href="@{'/senteapp/member/show{memberId}'(memberId=${member.memberId})}" class="btn btn-sm btn-outline-info">Records</a></td>
                     <td><a class="btn btn-sm btn-outline-warning" th:href="@{'/senteapp/member/edit{memberId}'(memberId=${member.memberId})}">Edit</a></td>
                     <td><a class="btn btn-sm btn-outline-primary" href="#">Deactivate</a></td>
-
 
                 </tr>
                 </tbody>
