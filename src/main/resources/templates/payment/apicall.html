@@ -14,14 +14,15 @@
             <button type="button" onClick="payWithRave()">Pay Now</button>
         </form>
 
-        <script>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
             const API_publicKey = "FLWPUBK-ad326af53cd5d247709f46283956559c-X";
 
             function payWithRave() {
                 var x = getpaidSetup({
                     PBFPubKey: API_publicKey,
-                    customer_email: "user@example.com",
-                    amount: 2000,
+                    customer_email: "admin@senteapp.com",
+                    amount: 1000,
                     customer_phone: "+1 456 284 2732",
                     currency: "USD",
                     txref: "rave-123456",
@@ -46,6 +47,7 @@
                     }
                 });
             }
+            /*]]>*/
         </script>
 
     </div>

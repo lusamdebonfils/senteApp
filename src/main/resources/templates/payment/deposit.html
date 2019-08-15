@@ -23,26 +23,21 @@
                                    placeholder="Amount" required>
                         </div>
                     </div>
+                    <div class="col-md-4; btn btn-lg" style="margin-top: 20px">
+                    <select th:field="*{depositType}">
+                        <option value="0">Select Account</option>
+                        <option th:value="SAVING" th:text="Saving"></option>
+                        <option th:value="LOAN" th:text="Loan"></option>
+                    </select>
+                    </div>
 
-                </div>
+                </div >
+
                 <div class="row">
-                    <button id="btnSubmit" type="submit" class="btn btn-outline-success btn-lg" style="color: #31ccb4">Proceed</button>
+                    <button id="btnSubmit" type="submit" class="btn btn-outline-success btn-lg" style="color: #31ccb4; margin-right: 5px">Proceed</button>
                     <a href="/senteapp" class="btn btn-outline-warning btn-lg" style="color: crimson">Cancel</a>
                 </div>
-                <!--<div class="row">
-                    <div class="col-md-4">
 
-
-                    </div>
-                    <div class="col-md-4">
-
-
-
-                        <a href="/senteapp/payment/deposit" class="btn btn-outline-warning" style="float: left">Proceed</a>&nbsp;&nbsp;&nbsp;
-                        <button id="btnSubmit" type="submit" class="btn btn-outline-success">Cancel</button>
-                    </div>
-
-                </div>-->
             </fieldset>
         </form>
 

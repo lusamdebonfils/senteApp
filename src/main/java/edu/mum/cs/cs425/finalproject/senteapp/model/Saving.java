@@ -12,14 +12,16 @@ public class Saving {
     private LocalDate paymentDate;
     private Double amountPaid;
     private Boolean verifiedPayment;
+    private String depositType;
 
     public Saving() {
     }
 
-    public Saving(LocalDate paymentDate, Double amountPaid, Boolean verifiedPayment) {
+    public Saving(LocalDate paymentDate, Double amountPaid, Boolean verifiedPayment, String depositType) {
         this.paymentDate = paymentDate;
         this.amountPaid = amountPaid;
-        this.verifiedPayment = false;
+        this.verifiedPayment = verifiedPayment;
+        this.depositType = depositType;
 
     }
 
@@ -54,5 +56,13 @@ public class Saving {
 
     public void setVerifiedPayment(Boolean verifiedPayment) {
         this.verifiedPayment = verifiedPayment;
+    }
+
+    public String getDepositType() {
+        return depositType;
+    }
+
+    public void setDepositType(String depositType) {
+        this.depositType = depositType;
     }
 }

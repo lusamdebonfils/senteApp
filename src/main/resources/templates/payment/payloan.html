@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/auth-masterlayout.html}">
+<head>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="container mt-3 mb-3">
+        <h2 class="mb-5">
+            Make a Deposit to your Loan Account
+        </h2>
+        <form name="newpaymentform" id="newpayment" method="post" action="/senteapp/payment/payloan" th:object="${installment}">
+            <fieldset>
+
+                <input type="hidden" name="accountId" th:value="${installment.installmentId}"/>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="installmentAmount">Amount</label>
+                            <span th:if="${#fields.hasErrors('installmentAmount')}" th:errors="*{installmentAmount}"
+                                  class="alert alert-danger"></span>
+                            <input id="installmentAmount" name="installmentAmount" type="number" class="form-control" th:value="${installment.installmentAmount}"
+                                   placeholder="Amount" required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <button id="btnSubmit" type="submit" class="btn btn-outline-success btn-lg" style="color: #31ccb4">Proceed</button>
+                    <a href="/senteapp" class="btn btn-outline-warning btn-lg" style="color: crimson">Cancel</a>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+</th:block>
+
+</body>
+</html>

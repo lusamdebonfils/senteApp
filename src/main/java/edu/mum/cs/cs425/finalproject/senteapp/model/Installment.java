@@ -10,16 +10,15 @@ public class Installment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long installmentId;
     private Integer installmentNumber;
-    private LocalDate dueDate;
+
     private LocalDate paymentDate;
     private Double installmentAmount;
 
     public Installment() {
     }
 
-    public Installment(Integer installmentNumber, LocalDate dueDate, LocalDate paymentDate, Double installmentAmount) {
+    public Installment(Integer installmentNumber, LocalDate paymentDate, Double installmentAmount) {
         this.installmentNumber = installmentNumber;
-        this.dueDate = dueDate;
         this.paymentDate = paymentDate;
         this.installmentAmount = installmentAmount;
     }
@@ -40,13 +39,6 @@ public class Installment {
         this.installmentNumber = installmentNumber;
     }
 
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
 
     public LocalDate getPaymentDate() {
         return paymentDate;
@@ -69,7 +61,7 @@ public class Installment {
         return "Installment{" +
                 "installmentId=" + installmentId +
                 ", installmentNumber=" + installmentNumber +
-                ", dueDate=" + dueDate +
+
                 ", paymentDate=" + paymentDate +
                 ", installmentAmount=" + installmentAmount +
                 '}';

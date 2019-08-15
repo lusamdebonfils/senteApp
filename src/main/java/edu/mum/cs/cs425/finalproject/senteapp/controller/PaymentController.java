@@ -42,16 +42,44 @@ public class PaymentController {
             return "payment/deposit";
         }
         //Setting Savings Details
-        System.out.println("\n\n\n\n\n\n"+principal.getName());
         Member member = memberService.getMemberByEmail(principal.getName());
-        System.out.println("\n\n\n\n\n\n"+member);
-        System.out.println("\n\n\n\n\n\n"+member.getRecord());
         saving.setPaymentDate(LocalDate.now());
-        member.getRecord().getSavingList().add(saving);
-        System.out.println("\n\n\n\n\n\n\n"+saving);
         saving = paymentService.saveSaving(saving);
-        System.out.println("\n\n\n\n\n\n\n"+saving);
+        saving.setVerifiedPayment(false);
+        member.getRecord().getSavingList().add(saving);
+        Double totalSavings = memberService.calculateMemberTotalSavings(member.getMemberId());
+        member.getRecord().setTotalSaving(totalSavings);
         return "payment/apicall";
     }
+
+
+
+    @GetMapping(value = "/senteapp/payment/payloan")
+    public String displayLoanPaymentForm(Model model){
+
+        model.addAttribute("installment", new Installment());
+
+        return "payment/payloan";
+    }
+
+
+
+    @RequestMapping(value = "/senteapp/payment/payloan", method = RequestMethod.POST)
+    public String createNewLoanDeposit(@Valid @ModelAttribute("installment") Installment installment, BindingResult bindingResult, Model model, Principal principal){
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            return "payment/payloan";
+        }
+        //Setting Savings Details
+        Member member = memberService.getMemberByEmail(principal.getName());
+        installment.setPaymentDate(LocalDate.now());
+        installment = paymentService.saveInstallment(installment);
+        paymentService.saveInstallment(installment);
+       // member.getRecord().getSavingList().add(saving);
+       // Double totalSavings = memberService.calculateMemberTotalSavings(member.getMemberId());
+       // member.getRecord().setTotalSaving(totalSavings);
+        return "payment/apicall";
+    }
+
 
 }

@@ -112,12 +112,9 @@ public class MemberController {
         member.setEmail(userName);
         member.setDateJoined(LocalDate.now());
 
-<<<<<<< HEAD
         Record record = new Record();
         record = recordService.createRecord(record);
-=======
 
->>>>>>> ec0659f2fb45e03cc406a3967b318bfc8a4e941d
         System.out.println("\n\n\nuser details check : "+member.getUser());
         System.out.println("\n\n\nmember details check : "+member);
         member.setRecord(record);
