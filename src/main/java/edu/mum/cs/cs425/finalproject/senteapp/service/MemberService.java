@@ -17,7 +17,7 @@ public interface MemberService {
         public abstract List<Member> getAllByAccountID(Long accounID);
 
 
-
+        public abstract Double calculateMemberTotalSavings(Long memberId);
 
         public abstract List<Member> getMembersByAccount(Account account);
         public Member getMemberByEmail(String email);

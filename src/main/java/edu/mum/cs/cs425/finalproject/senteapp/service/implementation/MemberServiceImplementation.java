@@ -2,6 +2,7 @@ package edu.mum.cs.cs425.finalproject.senteapp.service.implementation;
 
 import edu.mum.cs.cs425.finalproject.senteapp.model.Account;
 import edu.mum.cs.cs425.finalproject.senteapp.model.Member;
+import edu.mum.cs.cs425.finalproject.senteapp.model.Saving;
 import edu.mum.cs.cs425.finalproject.senteapp.repository.MemberRepository;
 
 import edu.mum.cs.cs425.finalproject.senteapp.service.MemberService;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -44,6 +46,7 @@ public class MemberServiceImplementation implements MemberService {
 
     @Override
     public Double calculateMemberAccountBalance(Long memberId) {
+
         return 0.0;
 
     }
@@ -62,6 +65,16 @@ public class MemberServiceImplementation implements MemberService {
     @Override
     public List<Member> getAllByAccountID(Long accounID) {
         return memberRepository.getAllByAccount_AccountId(accounID);
+    }
+
+    @Override
+    public Double calculateMemberTotalSavings(Long memberId) {
+        List<Saving> savings = memberRepository.findByMemberId(memberId).getRecord().getSavingList();
+        Double total = 0.0;
+        for(Saving saving:savings){
+            total+=saving.getAmountPaid();
+        }
+        return total;
     }
 
     public List<Member> getMembersByAccount(Account account) {

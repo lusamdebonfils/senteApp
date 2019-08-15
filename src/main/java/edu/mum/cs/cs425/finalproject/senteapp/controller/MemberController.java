@@ -28,6 +28,8 @@ public class MemberController {
     private RoleService roleService;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private RecordService recordService;
 
     public MemberController(MemberService memberService, AddressService addressService){
         this.memberService = memberService;
@@ -93,15 +95,20 @@ public class MemberController {
         //User user = member.getUser();
         List<Role> roles = new ArrayList<>();
         roles.add(roleService.getRoleById(2));
+
+
+
         User user = new User(userName,userName,defaultPassword,roles);
         user = userService.saveNewUser(user);
         member.setUser(user);
         member.setEmail(userName);
         member.setDateJoined(LocalDate.now());
 
+        Record record = new Record();
+        record = recordService.createRecord(record);
         System.out.println("\n\n\nuser details check : "+member.getUser());
         System.out.println("\n\n\nmember details check : "+member);
-
+        member.setRecord(record);
         Member memberN = memberService.saveMember(member);
         System.out.println("\n\n\nmember details check : "+memberN);
         return"redirect:/senteapp/member/list";
@@ -128,10 +135,14 @@ public class MemberController {
         String userName = member.getFirstName().toLowerCase().charAt(0) + member.getLastName().toLowerCase()+ "@senteapp.com";
         //User user = member.getUser();
         List<Role> roles = new ArrayList<>();
+        Record record = new Record();
+        record = recordService.createRecord(record);
+        System.out.println("\n\n\n" + record);
         roles.add(roleService.getRoleById(3));
         User user = new User(userName,userName,defaultPassword,roles);
         user = userService.saveNewUser(user);
         member.setUser(user);
+        member.setRecord(record);
         member.setEmail(userName);
         member.setDateJoined(LocalDate.now());
 
