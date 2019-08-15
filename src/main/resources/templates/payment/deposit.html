@@ -7,7 +7,7 @@
 <th:block layout:fragment="content">
     <div class="container mt-3 mb-3">
         <h2 class="mb-5">
-            Make a Deposit to your Savings Account
+            Make a Deposit to your Savings or Loan Account
         </h2>
         <form name="newpaymentform" id="newpayment" method="post" action="/senteapp/payment/deposit" th:object="${saving}">
             <fieldset>
@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="amountPaid">Amount</label>
+                            <label for="amountPaid">Required Amount</label>
                             <span th:if="${#fields.hasErrors('amountPaid')}" th:errors="*{amountPaid}"
                                   class="alert alert-danger"></span>
                             <input id="amountPaid" name="amountPaid" type="number" class="form-control" th:value="${saving.amountPaid}"
@@ -24,8 +24,8 @@
                         </div>
                     </div>
                     <div class="col-md-4; btn btn-lg" style="margin-top: 20px">
-                    <select th:field="*{depositType}">
-                        <option value="0">Select Account</option>
+                    <select  class="form-control" th:field="*{depositType}">
+                        <option value="0">Select Payment Category</option>
                         <option th:value="SAVING" th:text="Saving"></option>
                         <option th:value="LOAN" th:text="Loan"></option>
                     </select>
@@ -33,9 +33,16 @@
 
                 </div >
 
-                <div class="row">
-                    <button id="btnSubmit" type="submit" class="btn btn-outline-success btn-lg" style="color: #31ccb4; margin-right: 5px">Proceed</button>
-                    <a href="/senteapp" class="btn btn-outline-warning btn-lg" style="color: crimson">Cancel</a>
+                <div class="row mt-3">
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-4">
+<!--                        <a href="/senteapp" class="btn btn-outline-warning btn-lg" style="color: crimson">Cancel</a>-->
+                        <button id="btnSubmit" type="submit" class="btn btn-outline-success btn-lg">Click to Process</button>
+
+                    </div>
+
                 </div>
 
             </fieldset>

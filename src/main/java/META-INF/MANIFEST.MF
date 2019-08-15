@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: edu.mum.cs.cs425.finalproject.senteapp.SenteappApplication
+

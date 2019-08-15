@@ -55,12 +55,10 @@ public class MemberController {
         String email = principal.getName();
         Member member = memberService.getMemberByEmail(email);
         Account account = member.getAccount();
-        if (account.equals(null)){
-            System.out.println("You got Fucked");
-        }
-        System.out.println("Account causing issuess :"+account);
         //Member member = memberService
-        model.addAttribute("members", memberService.getMembersByAccount(account));
+        List<Member> members = memberService.getMembersByAccount(account);
+        members.remove(member);
+        model.addAttribute("members", members);
         model.addAttribute("allMemberCount", memberService.getAllMembers().size());
         model.addAttribute("accountName", account.getAccountName());
         model.addAttribute("currentPageNo", pageNo);
@@ -172,29 +170,89 @@ public class MemberController {
         return "redirect:/senteapp/member/membersperaccount";
     }
 
-    @GetMapping(value = {"/senteapp/member/edit{memberId}"})
-    public String editAccount(@PathVariable Long memberId, Model model) {
-        Member member = memberService.getMemberById(memberId);
+//    @GetMapping(value = {"/senteapp/member/edit{memberId}"})
+//    public String editAccount(@PathVariable Long memberId, Model model) {
+//        Member member = memberService.getMemberById(memberId);
+//
+//        if (member != null) {
+//            model.addAttribute("member", member);
+//            return "member/edit";
+//        }
+//        return "redirect:/senteapp/member/membersperaccount";
+//    }
+//
+//    @PostMapping(value = {"/senteapp/member/edit"})
+//    public String updateAccount(@Valid @ModelAttribute("member") Member member,
+//                                BindingResult bindingResult, Model model) {
+//        if (bindingResult.hasErrors()) {
+//            model.addAttribute("errors", bindingResult.getAllErrors());
+//            return "member/edit";
+//        }
+//        memberService.saveMember(member);
+//        return "redirect:/senteapp/member/membersperaccount";
+//    }
 
-        if (member != null) {
-            model.addAttribute("member", member);
-            return "member/edit";
-        }
-        return "redirect:/senteapp/member/membersperaccount";
-    }
+   //Changed by Moze
+   @GetMapping(value = {"/senteapp/member/edit{memberId}"})
+   public String editAccount(@PathVariable Long memberId, Model model) {
+       Member member = memberService.getMemberById(memberId);
+       if (member != null) {
+           model.addAttribute("member", member);
+           model.addAttribute("address", member.getAddress());
+           return "member/edit";
+       }
+       return "redirect:/senteapp/member/membersperaccount";
+   }
 
     @PostMapping(value = {"/senteapp/member/edit"})
     public String updateAccount(@Valid @ModelAttribute("member") Member member,
-                                BindingResult bindingResult, Model model) {
+                                BindingResult bindingResult, Model model, Principal principal) {
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "member/edit";
         }
-        memberService.saveMember(member);
+        Long editedMemberId = member.getMemberId();
+
+        //Setting user details
+        String defaultPassword = "$2a$10$pp418WOQMXjc3UFsbQQSkOATEwaKxIpiI6g.7vSOSYTTdd7G/xSIq";
+        String userName = member.getFirstName().toLowerCase().charAt(0) + member.getLastName().toLowerCase()+ "@senteapp.com";
+
+        List<Role> roles = new ArrayList<>();
+        Record record = new Record();
+        record = recordService.createRecord(record);
+        roles.add(roleService.getRoleById(3));
+        User newUser = null;
+        List<User> currentUsers = userService.userList();
+        List<String> userEmails = new ArrayList<>();
+
+        for(User user1 : currentUsers){
+            userEmails.add(user1.getEmail());
+        }
+
+        if(!userEmails.contains(userName)){
+            newUser = new User(userName,userName,defaultPassword,roles);
+            newUser = userService.saveNewUser(newUser);
+        }
+        else{
+            newUser = userService.findUserByEmail(userName);
+        }
+        member.setUser(newUser);
+        member.setRecord(record);
+        member.setEmail(userName);
+        member.setDateJoined(LocalDate.now());
+
+        //setting account
+        String email = principal.getName();
+        Member accountManager = memberService.getMemberByEmail(email);
+        Account account = accountManager.getAccount();
+        member.setAccount(account);
+        member.setAddress(accountManager.getAddress());
+        member = memberService.saveMember(member);
+
         return "redirect:/senteapp/member/membersperaccount";
     }
 
-    //public
 
 
 }
