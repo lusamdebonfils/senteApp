@@ -16,10 +16,10 @@
     </div>
 
     <div style="padding-top:1em;" class="container">
-
-        <form id="newMemberForm" method="post" action="/senteapp/member/add" th:object="${member}">
+        <input type="hidden" name="memberId" th:value="${member.memberId}"/>
+        <form id="newMemberForm" name="newMemberForm" method="post" action="/senteapp/member/add" th:object="${member}">
             <fieldset>
-
+                <input type="hidden" name="memberId" th:value="${member.memberId}"/>
                 <div class="row" style="margin-top: 10px">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -69,31 +69,6 @@
 
                         </div>
                     </div>
-
-                    <!--                    <div class="col-md-6">-->
-                    <!--                        <div class="form-group">-->
-                    <!--                            <label for="email">Email Address </label>-->
-                    <!--                            <input id="email" name="user.email" type="email" class="form-control"  aria-describedby="emailNameHelp" placeholder="Email Address Here"-->
-                    <!--                                   th:value="${user.email}" required>-->
-
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="col-md-6">-->
-                    <!--                        <div class="form-group">-->
-                    <!--                            <label for="username">Username </label>-->
-                    <!--                            <input id="username" name="user.username" type="text" class="form-control"  aria-describedby="usernameHelp" placeholder="username"-->
-                    <!--                                   th:value="${user.username}" required>-->
-
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="col-md-6">-->
-                    <!--                        <div class="form-group">-->
-                    <!--                            <label for="password">Password</label>-->
-                    <!--                            <input id="password" name="user.password" type="password" class="form-control"  aria-describedby="passwordHelp" placeholder="password"-->
-                    <!--                                   th:value="${user.password}" required>-->
-
-                    <!--                        </div>-->
-                    <!--                    </div>-->
 
                     <div class="col-md-12">
                         <h4>Add Member Address</h4>

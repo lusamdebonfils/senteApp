@@ -33,7 +33,6 @@ public class Member {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userId")
     private User user;
-
     private String email;
 
 
@@ -150,8 +149,27 @@ public class Member {
         this.account = account;
     }
 
+//    @Override
+//    public String toString() {
+//        return memberNumber + " - " + firstName + " " + middleName + " " + lastName;
+//    }
+
+
     @Override
     public String toString() {
-        return memberNumber + " - " + firstName + " " + middleName + " " + lastName;
+        return "Member{" +
+                "memberId=" + memberId +
+                ", memberNumber=" + memberNumber +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address=" + address +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", record=" + record +
+                ", dateJoined=" + dateJoined +
+                ", account=" + account +
+                ", user=" + user +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

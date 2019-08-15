@@ -46,7 +46,6 @@ public class AccountTypeController {
 
     @GetMapping(value = {"/senteapp/accounttype/edit{accountTypeId}"})
     public String editBook(@PathVariable Long accountTypeId, Model model) {
-        System.out.println("\n\n\n\n\n\n" + accountTypeId +"\n\n\n\n");
         AccountType accountType = accountTypeService.getAccountTypeById(accountTypeId);
         if (accountType != null) {
             model.addAttribute("accountType", accountType);
