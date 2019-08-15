@@ -170,7 +170,7 @@ public class MemberController {
         System.out.println("\n\n\nmember details check : "+member);
 
         Member memberN = memberService.saveMember(member);
-        return "redirect:/senteapp/member/list";
+        return "redirect:/senteapp/member/membersperaccount";
     }
 
     @GetMapping(value = {"/senteapp/member/edit{memberId}"})
