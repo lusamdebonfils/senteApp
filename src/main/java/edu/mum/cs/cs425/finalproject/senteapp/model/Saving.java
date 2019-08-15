@@ -10,14 +10,19 @@ public class Saving {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long savingId;
     private LocalDate paymentDate;
-    private Double amountSaved;
+    private Double amountPaid;
+    private Boolean verifiedPayment;
+    private String depositType;
 
     public Saving() {
     }
 
-    public Saving(LocalDate paymentDate, Double amountSaved) {
+    public Saving(LocalDate paymentDate, Double amountPaid, Boolean verifiedPayment, String depositType) {
         this.paymentDate = paymentDate;
-        this.amountSaved = amountSaved;
+        this.amountPaid = amountPaid;
+        this.verifiedPayment = verifiedPayment;
+        this.depositType = depositType;
+
     }
 
     public Long getSavingId() {
@@ -36,20 +41,28 @@ public class Saving {
         this.paymentDate = paymentDate;
     }
 
-    public Double getAmountSaved() {
-        return amountSaved;
+
+    public Double getAmountPaid() {
+        return amountPaid;
     }
 
-    public void setAmountSaved(Double amountSaved) {
-        this.amountSaved = amountSaved;
+    public void setAmountPaid(Double amountPaid) {
+        this.amountPaid = amountPaid;
     }
 
-    @Override
-    public String toString() {
-        return "Saving{" +
-                "savingId=" + savingId +
-                ", paymentDate=" + paymentDate +
-                ", amountSaved=" + amountSaved +
-                '}';
+    public Boolean getVerifiedPayment() {
+        return verifiedPayment;
+    }
+
+    public void setVerifiedPayment(Boolean verifiedPayment) {
+        this.verifiedPayment = verifiedPayment;
+    }
+
+    public String getDepositType() {
+        return depositType;
+    }
+
+    public void setDepositType(String depositType) {
+        this.depositType = depositType;
     }
 }

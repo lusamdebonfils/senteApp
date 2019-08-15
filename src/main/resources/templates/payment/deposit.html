@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/auth-masterlayout.html}">
+<head>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="container mt-3 mb-3">
+        <h2 class="mb-5">
+            Make a Deposit to your Savings Account
+        </h2>
+        <form name="newpaymentform" id="newpayment" method="post" action="/senteapp/payment/deposit" th:object="${saving}">
+            <fieldset>
+
+               <input type="hidden" name="accountId" th:value="${saving.savingId}"/>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="amountPaid">Amount</label>
+                            <span th:if="${#fields.hasErrors('amountPaid')}" th:errors="*{amountPaid}"
+                                  class="alert alert-danger"></span>
+                            <input id="amountPaid" name="amountPaid" type="number" class="form-control" th:value="${saving.amountPaid}"
+                                   placeholder="Amount" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4; btn btn-lg" style="margin-top: 20px">
+                    <select th:field="*{depositType}">
+                        <option value="0">Select Account</option>
+                        <option th:value="SAVING" th:text="Saving"></option>
+                        <option th:value="LOAN" th:text="Loan"></option>
+                    </select>
+                    </div>
+
+                </div >
+
+                <div class="row">
+                    <button id="btnSubmit" type="submit" class="btn btn-outline-success btn-lg" style="color: #31ccb4; margin-right: 5px">Proceed</button>
+                    <a href="/senteapp" class="btn btn-outline-warning btn-lg" style="color: crimson">Cancel</a>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+</th:block>
+
+</body>
+</html>

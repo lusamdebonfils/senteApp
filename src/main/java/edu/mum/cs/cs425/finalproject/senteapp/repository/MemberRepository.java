@@ -20,6 +20,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     public List<Member> findByAccountEquals(Account account);
     public Member findByEmailEquals(String email);
 
+    public Member findByMemberId(Long memberId);
+
 
 
 }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/auth-masterlayout.html}">
+<head>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="container mt-3 mb-3">
+        <h2 class="mb-5">
+            Proceed With Payment
+        </h2>
+        <form>
+            <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+            <button type="button" onClick="payWithRave()">Pay Now</button>
+        </form>
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            const API_publicKey = "FLWPUBK-ad326af53cd5d247709f46283956559c-X";
+
+            function payWithRave() {
+                var x = getpaidSetup({
+                    PBFPubKey: API_publicKey,
+                    customer_email: "admin@senteapp.com",
+                    amount: 1000,
+                    customer_phone: "+1 456 284 2732",
+                    currency: "USD",
+                    txref: "rave-123456",
+                    meta: [{
+                        metaname: "flightID",
+                        metavalue: "AP1234"
+                    }],
+                    onclose: function() {},
+                    callback: function(response) {
+                        var txref = response.tx.txRef; // collect txRef returned and pass to a 					server page to complete status check.
+                        console.log("This is the response returned after a charge", response);
+                        if (
+                            response.tx.chargeResponseCode == "00" ||
+                            response.tx.chargeResponseCode == "0"
+                        ) {
+                            // redirect to a success page
+                        } else {
+                            // redirect to a failure page.
+                        }
+
+                        x.close(); // use this to close the modal immediately after payment.
+                    }
+                });
+            }
+            /*]]>*/
+        </script>
+
+    </div>
+</th:block>
+
+</body>
+</html>

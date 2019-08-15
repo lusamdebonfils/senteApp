@@ -16,13 +16,16 @@ public class Record {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Saving> savingList;
 
+    private Double totalSaving;
+
     public Record() {
     }
 
-    public Record(Long recordNumber) {
+    public Record(Long recordNumber, Double totalSaving) {
         this.recordNumber = recordNumber;
         this.loanList = new ArrayList<>();
         this.savingList = new ArrayList<>();
+        this.totalSaving =totalSaving;
     }
 
     public Long getRecordId() {
@@ -55,6 +58,14 @@ public class Record {
 
     public void setSavingList(List<Saving> savingList) {
         this.savingList = savingList;
+    }
+
+    public Double getTotalSaving() {
+        return totalSaving;
+    }
+
+    public void setTotalSaving(Double totalSaving) {
+        this.totalSaving = totalSaving;
     }
 
     @Override
