@@ -35,12 +35,10 @@ public class LoanController {
         model.addAttribute("loan", new Loan());
 
         String email = principal.getName();
-        System.out.println("\n\n\n\n" + email);
         Member member = memberService.getMemberByEmail(email);
-        System.out.println("\n\n\n\n" + member);
         Account account = member.getAccount();
-        System.out.println("\n\n\n\n" + account);
         List<Member> members = memberService.getMembersByAccount(account);
+        members.remove(member);
         model.addAttribute("members", members);
         return "loan/apply";
     }

@@ -34,29 +34,37 @@ public class MemberController {
     public MemberController(MemberService memberService, AddressService addressService){
         this.memberService = memberService;
         this.addressService = addressService;
-
     }
 
+    @GetMapping(value = {"/senteapp/member/show{memberId}"})
+    public String viewMemberPage(Model model, @PathVariable Long memberId){
+        model.addAttribute("member", memberService.getMemberById(memberId));
+        return "member/showMember";
+    }
 
-    @GetMapping(value = "senteapp/member/list")
+    @GetMapping(value = {"/senteapp/member/list"})
     public String getAllMembers(@RequestParam(defaultValue = "0") Integer pageNo, Model model){
         model.addAttribute("members", memberService.getAllMembers(pageNo));
         model.addAttribute("allMemberCount", memberService.getAllMembers().size());
         model.addAttribute("currentPageNo", pageNo);
         return "member/list";
     }
-    @GetMapping(value = "senteapp/member/membersperaccount")
+
+    @GetMapping(value = "/senteapp/member/membersperaccount")
     public String getAllMembersAccManager(@RequestParam(defaultValue = "0") Integer pageNo, Model model,Principal principal){
-        String currentUser = principal.getName();
+        String email = principal.getName();
+        Member member = memberService.getMemberByEmail(email);
+        Account account = member.getAccount();
         //Member member = memberService
-        model.addAttribute("members", memberService.getAllMembers(pageNo));
+        model.addAttribute("members", memberService.getMembersByAccount(account));
         model.addAttribute("allMemberCount", memberService.getAllMembers().size());
+        model.addAttribute("accountName", account.getAccountName());
         model.addAttribute("currentPageNo", pageNo);
         return "member/membersperaccount";
     }
 
     @GetMapping(value = "/senteapp/account/memmberList/view{accountId}")
-    public String getAllMembersPerAccount(@RequestParam(defaultValue = "0") Integer pageNo, Model model, Principal principal, @PathVariable Long accountId){
+    public String getAllMembersPerAccount(@RequestParam(defaultValue = "0") Integer pageNo, Model model, @PathVariable Long accountId){
         //Member manager = memberService.
         Account account = accountService.getAccountById(accountId);
         System.out.println("Bishesshshshshhsh ::::: "+account);
@@ -104,8 +112,12 @@ public class MemberController {
         member.setEmail(userName);
         member.setDateJoined(LocalDate.now());
 
+<<<<<<< HEAD
         Record record = new Record();
         record = recordService.createRecord(record);
+=======
+
+>>>>>>> ec0659f2fb45e03cc406a3967b318bfc8a4e941d
         System.out.println("\n\n\nuser details check : "+member.getUser());
         System.out.println("\n\n\nmember details check : "+member);
         member.setRecord(record);
@@ -151,7 +163,7 @@ public class MemberController {
 
         Member memberN = memberService.saveMember(member);
         System.out.println("\n\n\nmember details check : "+memberN);
-        return"redirect:/senteapp/member/list";
+        return "redirect:/senteapp/member/list";
     }
 
     @GetMapping(value = {"/senteapp/member/edit{memberId}"})
@@ -160,7 +172,6 @@ public class MemberController {
 
         if (member != null) {
             model.addAttribute("member", member);
-
             return "member/edit";
         }
         return "member/list";
