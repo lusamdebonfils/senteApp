@@ -81,10 +81,9 @@ public class MemberController {
     }
 
     @GetMapping(value = {"/senteapp/member/search"})
-    public String searchMember(@RequestParam("search") String search,@RequestParam(defaultValue = "0") Integer pageNo, Model model) {
-        model.addAttribute("members", memberService.searchMembers(search,pageNo));
-        model.addAttribute("currentPageNo", pageNo);
-        return "member/list";
+    public String searchMember(@RequestParam("search") String search, Model model) {
+        model.addAttribute("members", memberService.searchMembers(search));
+        return "member/searchAllList";
     }
 
 

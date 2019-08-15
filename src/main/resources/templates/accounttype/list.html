@@ -7,6 +7,7 @@
 <body>
 <th:block layout:fragment="content">
     <div class="container mt-3 mb-3">
+
         <h2 class="mb-5">
             List of Account Types
             <a sec:authorize="hasRole('ROLE_ADMIN')" href="/senteapp/accounttype/add" class="btn btn-outline-primary btn-lg float-right">Create new account type</a>

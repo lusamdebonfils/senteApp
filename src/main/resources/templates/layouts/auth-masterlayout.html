@@ -5,12 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Sente App</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-1OYccka9EByiS23wvPFiYHBPRAgU91xYVFb8g8sen6vRiBI5Uko6+B87q8zPGUnA" crossorigin="anonymous">
-
+<!--    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-1OYccka9EByiS23wvPFiYHBPRAgU91xYVFb8g8sen6vRiBI5Uko6+B87q8zPGUnA" crossorigin="anonymous">-->
+<!--    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css" rel="stylesheet" integrity="sha384-N8DsABZCqc1XWbg/bAlIDk7AS/yNzT5fcKzg/TwfmTuUqZhGquVmpb5VvfmLcMzp" crossorigin="anonymous">-->
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-iqcNtN3rj6Y1HX/R0a3zu3ngmbdwEa9qQGHdkXwSRoiE+Gj71p0UNDSm99LcXiXV" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <!--    nav class="navbar navbar-expand-lg navbar-dark bg-primary-->
+        <div class="container">
     <a class="navbar-brand" href="/">sente Application</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -62,35 +65,33 @@
             <!--<input class="form-control mr-sm-2" type="text" placeholder="Search">-->
             <a sec:authorize="isAnonymous()" href="/senteapp/login" class="btn btn-secondary">Sign In</a>
 
-            <!--                <span>Welcome, </span><span sec:authentication="principal.username" style="color:#fff;border-right: white 0px solid; padding-left: 2em; padding-right: 1em;">Guest</span>-->
-            <a sec:authorize="isAuthenticated()" href="/senteapp/logout" class="btn btn-secondary">Sign out</a>
+            <span sec:authentication="principal.username">Guest</span>
+            <a sec:authorize="isAuthenticated()" href="/senteapp/logout" class="btn btn-outline-danger ml-1 mr-1">Sign out</a>
         </form>
-
+    </div>
     </div>
 </nav>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-3">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Accounts
+                        <span class="badge badge-primary badge-pill">14</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Members
+                        <span class="badge badge-primary badge-pill">3</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-9">
+                <th:block layout:fragment="content">
 
-<div class="container">
-    <div class="row mt-4">
-        <div class="col-3">
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Accounts
-                    <span class="badge badge-primary badge-pill">14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Members
-                    <span class="badge badge-primary badge-pill">3</span>
-                </li>
-
-            </ul>
-        </div>
-        <div class="col-9">
-            <th:block layout:fragment="content">
-
-            </th:block>
+                </th:block>
+            </div>
         </div>
     </div>
-</div>
 <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
 
 </body>

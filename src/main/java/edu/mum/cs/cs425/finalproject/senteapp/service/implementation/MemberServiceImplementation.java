@@ -52,10 +52,15 @@ public class MemberServiceImplementation implements MemberService {
     }
 
     @Override
-    public Page<Member> searchMembers(String search, Integer pageNo) {
-        return memberRepository.findAllByLastNameContainsOrFirstNameContainsOrMiddleNameContains(search, search, search, PageRequest.of(pageNo, 2,Sort.by("firstName")));
-
+    public List<Member> searchMembers(String search) {
+        return memberRepository.findAllByLastNameContainsOrFirstNameContainsOrMiddleNameContains(search,search,search);
     }
+
+//    @Override
+//    public Page<Member> searchMembers(String search, Integer pageNo) {
+//        return memberRepository.findAllByLastNameContainsOrFirstNameContainsOrMiddleNameContains(search, search, search, PageRequest.of(pageNo, 2,Sort.by("firstName")));
+//
+//    }
 
     @Override
     public Page<Member> getAllMembersPerAccount(Account acct, int pageNo) {
