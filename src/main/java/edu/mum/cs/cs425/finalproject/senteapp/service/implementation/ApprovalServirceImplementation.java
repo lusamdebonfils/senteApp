@@ -23,7 +23,7 @@ public class ApprovalServirceImplementation implements ApprovalService {
 
     @Override
     public List<Approval> getAllApprovals(Account account) {
-        return  approvalRepository.getAllByAccountEquals(account);
+        return  approvalRepository.findByAccountAccountId(account.getAccountId());
     }
 
     @Override

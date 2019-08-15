@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
+
 @Service
 public class SenteappUserDetailsService  implements UserDetailsService {
     @Autowired
@@ -33,5 +35,17 @@ public class SenteappUserDetailsService  implements UserDetailsService {
 
     public User saveNewUser(User user){
         return userRepository.save(user);
+    }
+
+    public  void deleteUser(User user){
+        userRepository.delete(user);
+    }
+
+    public List<User> userList(){
+        return userRepository.findAll();
+    }
+
+    public User findUserByEmail(String email){
+        return userRepository.findByUsernameEquals(email);
     }
 }
